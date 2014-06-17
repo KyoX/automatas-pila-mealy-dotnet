@@ -80,8 +80,36 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pantallas\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pantallas\HowTo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pantallas\MealyGenerator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pantallas\PDAGenerator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pantallas\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pantallas\HowTo.xaml.cs">
+      <DependentUpon>HowTo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pantallas\MealyGenerator.xaml.cs">
+      <DependentUpon>MealyGenerator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pantallas\PDAGenerator.xaml.cs">
+      <DependentUpon>PDAGenerator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

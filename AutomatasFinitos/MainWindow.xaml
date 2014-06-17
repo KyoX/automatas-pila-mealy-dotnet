@@ -10,12 +10,12 @@
         <Button Content="Cargar archivo" Height="23" HorizontalAlignment="Left" Margin="49,102,0,0" Name="button1" VerticalAlignment="Top" Width="120" Click="button1_Click" />
         <RadioButton Content="Automata de pila" Height="16" HorizontalAlignment="Left" Margin="21,45,0,0" Name="radioButton1" VerticalAlignment="Top" IsChecked="True" GroupName="tipoAF" Checked="radioButton1_Checked" />
         <RadioButton Content="Maquina Mealy" Height="16" HorizontalAlignment="Left" Margin="33,45,0,0" Name="radioButton2" VerticalAlignment="Top" GroupName="tipoAF" Checked="radioButton2_Checked" Grid.Column="1" />
-        <Button Content="Ejecutar" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="86,102,0,0" Name="button2" VerticalAlignment="Top" Width="121" />
+        <Button Content="Ejecutar" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="86,102,0,0" Name="button2" VerticalAlignment="Top" Width="121" Click="button2_Click" />
         <Label Content="Entrada:" Height="28" HorizontalAlignment="Left" Margin="21,163,0,0" Name="label1" VerticalAlignment="Top" />
         <Label Content="Pila/Salida:" Height="28" HorizontalAlignment="Left" Margin="21,217,0,0" Name="label2" VerticalAlignment="Top" />
         <TextBox Grid.ColumnSpan="2" Height="23" HorizontalAlignment="Left" Margin="91,165,0,0" Name="textBox1" VerticalAlignment="Top" Width="483" AcceptsReturn="True" AcceptsTab="True" />
         <TextBox Grid.ColumnSpan="2" Height="23" HorizontalAlignment="Left" Margin="91,219,0,0" Name="textBox2" VerticalAlignment="Top" Width="483" AcceptsReturn="False" IsReadOnly="True" />
-        <Button Content="Reiniciar todo" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="299,102,0,0" Name="button3" VerticalAlignment="Top" Width="106" />
+        <Button Content="Reiniciar todo" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="299,102,0,0" Name="button3" VerticalAlignment="Top" Width="106" Click="button3_Click" />
         <StatusBar Height="23" HorizontalAlignment="Left" Margin="2,324,0,0" Name="statusBar1" VerticalAlignment="Top" Width="656" Grid.ColumnSpan="2" />
         <Label Content="Estado: listo" Height="28" HorizontalAlignment="Left" Margin="0,321,0,0" Name="label3" VerticalAlignment="Top" />
         <Label Content="Archivo cargado: ---" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="0,321,0,0" Name="label4" VerticalAlignment="Top" />
@@ -23,10 +23,14 @@
             <MenuItem Header="Acciones" Click="MenuItem_Click">
                 <MenuItem Header="Cargar archivo" />
                 <MenuItem Header="Ejecutar" />
-                <MenuItem Header="Mostrar en notación matemática" />
+                <MenuItem Header="Mostrar en notación matemática" /> <!-- en consideración todavía -->
                 <MenuItem Header="Salir" />
             </MenuItem>
-            <MenuItem Header="Ayuda">
+            <MenuItem Header="Generar" Click="MenuItem_Click_1">
+                <MenuItem Header="Automata de pila" />
+                <MenuItem Header="Máquina de Mealy" />
+            </MenuItem>
+            <MenuItem Header="Ayuda" Click="MenuItem_Click_2">
                 <MenuItem Header="Como usar este programa" />
                 <MenuItem Header="Acerca de" />
             </MenuItem>
