@@ -60,5 +60,19 @@ namespace AutomatasFinitos
         {
             cargarPDA = false;
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem source = (MenuItem)e.Source;
+
+            string nombre = (string)source.Header;
+            switch (nombre)
+            {
+                case "Salir":
+                    Application.Current.Shutdown();
+                    break;
+            }
+
+        }
     }
 }
