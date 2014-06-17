@@ -1,0 +1,8 @@
+﻿<Window x:Class="AutomatasFinitos.Pantallas.PDAGenerator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Generador de automata de pila" Height="300" Width="540" Icon="/AutomatasFinitos;component/Resources/Icons/ic_launcher.png">
+    <Grid>
+        
+    </Grid>
+</Window>
