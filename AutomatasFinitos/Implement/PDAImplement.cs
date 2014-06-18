@@ -63,6 +63,7 @@ namespace AutomatasFinitos.Implement
                         linea = linea.Replace(" ", string.Empty);
                         pda.simboloInicialPila = linea;
                     }
+                    else { return false; }
 
                     // estados finales / aceptación
                     linea = file.ReadLine();
@@ -85,11 +86,13 @@ namespace AutomatasFinitos.Implement
                             string[] key = t.Split(':');
                             dicTemp.Add(key[0].Replace(" ", string.Empty), key[1].Replace(" ", string.Empty));
                         }
-                        if (dicTemp.Count > 0)
-                        {
-                            pda.funcTransicion = dicTemp;
-                        }
+                        
                     }
+                    if (dicTemp.Count > 0)
+                    {
+                        pda.funcTransicion = dicTemp;
+                    }
+                    else { return false; }
 
                 }
                 else { return false; }

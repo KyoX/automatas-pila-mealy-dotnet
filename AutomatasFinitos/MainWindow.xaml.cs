@@ -23,8 +23,8 @@ namespace AutomatasFinitos
     {
         private bool cargarPDA = true;
         bool inicializado = false;
-        MealyImplement mealy = new MealyImplement();
-        PDAImplement pda = new PDAImplement();
+        MealyImplement mealy;
+        PDAImplement pda;
 
 
         public MainWindow()
@@ -38,6 +38,14 @@ namespace AutomatasFinitos
         // dependiendo del radio button seleccionado
         private void button1_Click(object sender, RoutedEventArgs e)
         {
+            cargarArchivo();
+        }
+
+        private void cargarArchivo()
+        {
+            this.label4.Content = "Archivo cargado: ---";
+            pda = null;
+            mealy = null;
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.DefaultExt = ".txt"; // Default file extension
             dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
@@ -48,11 +56,27 @@ namespace AutomatasFinitos
             {
                 if (cargarPDA)
                 {
+                    pda = new PDAImplement();
                     inicializado = pda.initFromFile(dlg.FileName);
                 }
                 else
                 {
+                    mealy = new MealyImplement();
                     inicializado = mealy.initFromFile(dlg.FileName);
+                }
+
+                // si se pudo cargar el archivo de definiciones
+                if (inicializado)
+                {
+                    //DO sometime
+                    string temp = (string)this.label4.Content;
+                    this.label4.Content = temp.Replace("---", dlg.FileName);
+                }
+                else
+                {
+                    MessageBox.Show("No fue posible cargar la definición del autómata ya"
+                    + " que el archivo fuente tiene un formato no valido.\nFavor revise dicho archivo."
+                    , "Error de formato", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -77,6 +101,9 @@ namespace AutomatasFinitos
             {
                 case "Salir":
                     Application.Current.Shutdown();
+                    break;
+                case "Cargar archivo":
+                    cargarArchivo();
                     break;
             }
 

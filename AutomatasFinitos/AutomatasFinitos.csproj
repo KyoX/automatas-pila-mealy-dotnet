@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="Beans\Mealy_Moore.cs" />
     <Compile Include="Beans\PDA.cs" />
+    <Compile Include="Beans\Form\MealyMorreFileForm.cs" />
     <Compile Include="Implement\MealyImplement.cs" />
     <Compile Include="Implement\PDAImplement.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -137,7 +138,9 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\ic_launcher.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\logo2_uca.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

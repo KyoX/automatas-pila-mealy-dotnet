@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AutomatasFinitos.Beans;
-using System.Runtime.Serialization;
+using AutomatasFinitos.Form;
 
 namespace AutomatasFinitos.Implement
 {
@@ -71,11 +71,12 @@ namespace AutomatasFinitos.Implement
                            string[] key = t.Split(':');
                            dicTemp.Add(key[0].Replace(" ", string.Empty), key[1].Replace(" ", string.Empty));
                        }
-                       if (dicTemp.Count > 0)
-                       {
-                           mm.funcTransicion = dicTemp;
-                       }
                    }
+                   if (dicTemp.Count > 0)
+                   {
+                       mm.funcTransicion = dicTemp;
+                   }
+                   else { return false; }
 
                    //función de salida
                    linea = file.ReadLine();
@@ -89,12 +90,12 @@ namespace AutomatasFinitos.Implement
                            string[] key = t.Split(':');
                            dicTemp.Add(key[0].Replace(" ", string.Empty), key[1].Replace(" ", string.Empty));
                        }
-                       if (dicTemp.Count > 0)
-                       {
-                           mm.funcSalida = dicTemp;
-                       }
                    }
-
+                   if (dicTemp.Count > 0)
+                   {
+                       mm.funcSalida = dicTemp;
+                   }
+                   else { return false; }
                }
                else { return false; }
 
@@ -109,6 +110,32 @@ namespace AutomatasFinitos.Implement
                file.Close();
            }
            
+           return true;
+       }
+
+       public bool generateFile(MealyMorreFileForm mmForm)
+       {
+           Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+           dlg.FileName = "Mealy"; 
+           dlg.DefaultExt = ".text"; 
+           dlg.Filter = "Text documents (.txt)|*.txt"; 
+
+           Nullable<bool> result = dlg.ShowDialog();
+
+           if (result == true)
+           {
+               string filename = dlg.FileName;
+               System.IO.StreamWriter file = new System.IO.StreamWriter(filename);
+               file.WriteLine(mmForm.estados);
+               file.WriteLine(mmForm.alfabetoEntrada);
+               file.WriteLine(mmForm.alfabetosalida);
+               file.WriteLine(mmForm.estadoinicial);
+               file.WriteLine(mmForm.funcionesTransición);
+               file.Write(mmForm.funcionesSalida);
+
+               file.Close();
+           }
+
            return true;
        }
     }
