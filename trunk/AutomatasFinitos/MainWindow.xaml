@@ -23,7 +23,9 @@
             <MenuItem Header="Acciones" Click="MenuItem_Click">
                 <MenuItem Header="Cargar archivo" />
                 <MenuItem Header="Ejecutar" />
-                <MenuItem Header="Mostrar en notación matemática" /> <!-- en consideración todavía -->
+                <MenuItem Header="Mostrar en notación matemática" />
+                <MenuItem Header="Reiniciar todo" />
+                <!-- en consideración todavía -->
                 <MenuItem Header="Salir" />
             </MenuItem>
             <MenuItem Header="Generar" Click="MenuItem_Click_1">

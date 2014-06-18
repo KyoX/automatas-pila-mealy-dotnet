@@ -1,6 +1,21 @@
 ﻿<Window x:Class="AutomatasFinitos.Pantallas.About"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Acerca de" Height="300" Width="300" Topmost="True" WindowStartupLocation="CenterScreen" Icon="/AutomatasFinitos;component/Resources/Icons/ic_launcher.png" ShowInTaskbar="False">
-    <Grid></Grid>
+        Title="Acerca de" Height="396" Width="338" Topmost="True" WindowStartupLocation="CenterScreen" Icon="/AutomatasFinitos;component/Resources/Icons/ic_launcher.png" ShowInTaskbar="False">
+    <Grid>
+        <Label Content="Universidad Centroamericana" Height="28" HorizontalAlignment="Left" Margin="20,23,0,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="&quot;José Simeón Cañas&quot;" Height="28" HorizontalAlignment="Left" Margin="43,46,0,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="Proyecto:" Height="28" HorizontalAlignment="Left" Margin="12,81,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="Autómata de Pila y Máquina de Mealy" Height="28" HorizontalAlignment="Left" Margin="50,115,0,0" Name="label4" VerticalAlignment="Top" />
+        <Label Content="Teoría Matemática de la Computación" Height="28" HorizontalAlignment="Left" Margin="50,149,0,0" Name="label5" VerticalAlignment="Top" />
+        <Label Content="Presentado por:" Height="28" HorizontalAlignment="Left" Margin="12,183,0,0" Name="label6" VerticalAlignment="Top" />
+        <ListBox Height="113" HorizontalAlignment="Left" Margin="20,223,0,0" Name="listBox1" VerticalAlignment="Top" Width="259">
+            <ListBoxItem Content="Rubén Iván Martínez Menjívar  00029608" />
+            <ListBoxItem Content="Nelson Josué Serrano Rivas  00033508" />
+            <ListBoxItem Content="Telma Milagro Pineda Cerón 00006108" />
+            <ListBoxItem Content="Irvin Balmore Cabezas Martínez 00002409" />
+            <ListBoxItem Content="David Emilio Izaguirre moreno 00019809" />
+        </ListBox>
+        <Image HorizontalAlignment="Left" Margin="198,12,0,263" Name="image1" Stretch="Fill" Width="81" Source="/AutomatasFinitos;component/Resources/logo2_uca.png" />
+    </Grid>
 </Window>
