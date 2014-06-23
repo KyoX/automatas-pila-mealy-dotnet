@@ -57,6 +57,7 @@ namespace AutomatasFinitos
             { 
                 mG.ShowDialog();
                 moore = new MooreImplement(mG.mm);
+                this.label4.Content = "Tipo Automata : Moore";
             }
             else { new PDAGenerator().ShowDialog(); }
         }
