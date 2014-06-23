@@ -1,7 +1,7 @@
-﻿<Window x:Class="AutomatasFinitos.Pantallas.MealyGenerator"
+﻿<Window x:Class="AutomatasFinitos.Pantallas.MooreGenerator"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Genereador Mealy" Height="491" Width="483" Icon="/AutomatasFinitos;component/Resources/Icons/ic_launcher.png" ShowInTaskbar="False" Topmost="True" WindowStartupLocation="CenterOwner">
+        Title="Generador Moore" Height="491" Width="483" Icon="/AutomatasFinitos;component/Resources/Icons/ic_launcher.png" ShowInTaskbar="False" Topmost="True" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="227*" />
