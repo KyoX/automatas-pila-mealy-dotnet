@@ -12,24 +12,26 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AutomatasFinitos.Beans;
 using AutomatasFinitos.Implement;
-using AutomatasFinitos.Form;
 using System.Text.RegularExpressions;
 using AutomatasFinitos.Utils;
 
 namespace AutomatasFinitos.Pantallas
 {
     /// <summary>
-    /// Lógica de interacción para MealyGenerator.xaml
+    /// Lógica de interacción para MooreGenerator.xaml
     /// </summary>
-    public partial class MealyGenerator : Window
+    public partial class MooreGenerator : Window
     {
+        public Mealy_Moore mm { get; set; }
+
         private List<string> estados = new List<string>();
         private List<string> alfaEntrada = new List<string>();
         private List<string> alfaSalida = new List<string>();
-        Dictionary<string, string> funcT = new Dictionary<string, string>();
-        Dictionary<string, string> funcS = new Dictionary<string, string>();
+        private Dictionary<string, string> funcT = new Dictionary<string, string>();
+        private Dictionary<string, string> funcS = new Dictionary<string, string>();
+        
 
-        public MealyGenerator()
+        public MooreGenerator()
         {
             InitializeComponent();
             
@@ -50,33 +52,28 @@ namespace AutomatasFinitos.Pantallas
 
         private void button4_Click(object sender, RoutedEventArgs e)
         {
+            mm = null;
             this.Close();
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)
         {
             
-            
-            if(validarEntradas())
+            if(validarEntradas() && estados.Count > 0 && alfaEntrada.Count > 0 
+                && alfaSalida.Count > 0 && funcS.Count > 0 && funcT.Count > 0)
             {
                 llenarListas();
                
-                MealyMorreFileForm mmForm = new MealyMorreFileForm();
-                MealyImplement mImpl = new MealyImplement();
 
+                mm = new Mealy_Moore();
 
-                mmForm.estados = TextOperations.concatCsv_L(estados);
-                mmForm.alfabetoEntrada = TextOperations.concatCsv_L(alfaEntrada);
-                mmForm.alfabetosalida = TextOperations.concatCsv_L(alfaSalida);
-                mmForm.estadoinicial = (string)this.comboBox7.SelectedItem;
-                mmForm.funcionesTransición = TextOperations.concatCsv_D(funcT, ':');
-                mmForm.funcionesSalida = TextOperations.concatCsv_D(funcS, ':');
-
-                if (mImpl.generateFile(mmForm)) { MessageBox.Show("Archivo creado exitosamente", "Mealy", MessageBoxButton.OK, MessageBoxImage.Information); }
-                else { MessageBox.Show("No se pudo generar el archivo de definiciones","Mealy", MessageBoxButton.OK,MessageBoxImage.Warning); }
-                
-                
-
+                mm.estados = estados;
+                mm.alfaEntrada = alfaEntrada;
+                mm.alfaSalida = alfaSalida;
+                mm.estadoInicial = (string)this.comboBox7.SelectedItem;
+                mm.funcTransicion = funcT;
+                mm.funcSalida = funcS;
+                this.Close();
             }
         }
 
@@ -87,7 +84,7 @@ namespace AutomatasFinitos.Pantallas
 
             Regex rgx = new Regex(pattern);
             Regex comaReg = new Regex(pattern2);
-            if (this.textBox7.Text.Length > 0)
+            if (this.textBox7.Text.Length > 0 && this.textBox8.Text.Length > 0 && this.textBox9.Text.Length > 0)
             {
                 if (rgx.IsMatch(this.textBox7.Text) && !comaReg.IsMatch(this.textBox7.Text))
                 {
@@ -135,7 +132,7 @@ namespace AutomatasFinitos.Pantallas
                 else
                 {
                     MessageBox.Show("El formato de " + this.textBox9.Text + " NO es valido.\n"
-                        + "Favor revise el campo dl alfabeto de salida.", "Formato Invalido",
+                        + "Favor revise el campo del alfabeto de salida.", "Formato Invalido",
                         MessageBoxButton.OK, MessageBoxImage.Warning);
                     return false;
                 }
