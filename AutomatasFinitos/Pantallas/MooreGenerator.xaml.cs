@@ -58,12 +58,14 @@ namespace AutomatasFinitos.Pantallas
 
         private void button3_Click(object sender, RoutedEventArgs e)
         {
-            
-            if(validarEntradas() && estados.Count > 0 && alfaEntrada.Count > 0 
+
+            if (validarEntradas() && this.textBox7.Text.Length > 0 
+                && this.textBox8.Text.Length > 0 && this.textBox9.Text.Length > 0 
+                && estados.Count > 0 && alfaEntrada.Count > 0
                 && alfaSalida.Count > 0 && funcS.Count > 0 && funcT.Count > 0)
             {
                 llenarListas();
-               
+
 
                 mm = new Mealy_Moore();
 
@@ -75,6 +77,10 @@ namespace AutomatasFinitos.Pantallas
                 mm.funcSalida = funcS;
                 this.Close();
             }
+            else
+            {
+                MessageBox.Show("Aún faltan campos por definir", "Aviso", MessageBoxButton.OK, MessageBoxImage.Stop);
+            }
         }
 
         private bool validarEntradas()
@@ -84,13 +90,19 @@ namespace AutomatasFinitos.Pantallas
 
             Regex rgx = new Regex(pattern);
             Regex comaReg = new Regex(pattern2);
-            if (this.textBox7.Text.Length > 0 && this.textBox8.Text.Length > 0 && this.textBox9.Text.Length > 0)
+            if (this.textBox7.Text.Length > 0)
             {
                 if (rgx.IsMatch(this.textBox7.Text) && !comaReg.IsMatch(this.textBox7.Text))
                 {
                     this.textBox7.Text = this.textBox7.Text.Replace(" ", String.Empty).Trim();
                     if (this.textBox7.Text.EndsWith(",")) { this.textBox7.Text = this.textBox7.Text.Substring(0, this.textBox7.Text.Length - 1); }
-                    estados = new List<string>(this.textBox7.Text.Split(','));
+                    string[] tempEstados = this.textBox7.Text.Split(',');
+                    estados = new List<string>();
+                    foreach (string t in tempEstados)
+                    {
+                        if (!estados.Contains(t)) { estados.Add(t); }
+                    }
+                    if (estados.Count == 0) { return false; }
                 }
                 else
                 {
@@ -109,7 +121,13 @@ namespace AutomatasFinitos.Pantallas
                 {
                     this.textBox8.Text = this.textBox8.Text.Replace(" ", String.Empty).Trim();
                     if (this.textBox8.Text.EndsWith(",")) { this.textBox8.Text = this.textBox8.Text.Substring(0, this.textBox8.Text.Length - 1); }
-                    alfaEntrada = new List<string>(this.textBox8.Text.Split(','));
+                    string[] temp = this.textBox8.Text.Split(',');
+                    alfaEntrada = new List<string>();
+                    foreach (string t in temp)
+                    {
+                        if (!alfaEntrada.Contains(t)) { alfaEntrada.Add(t); }
+                    }
+                    if (alfaEntrada.Count == 0) { return false; }
                 }
                 else
                 {
@@ -127,7 +145,13 @@ namespace AutomatasFinitos.Pantallas
                 {
                     this.textBox9.Text = this.textBox9.Text.Replace(" ", String.Empty).Trim();
                     if (this.textBox9.Text.EndsWith(",")) { this.textBox9.Text = this.textBox9.Text.Substring(0, this.textBox9.Text.Length - 1); }
-                    alfaSalida = new List<string>(this.textBox9.Text.Split(','));
+                    string[] temp = this.textBox9.Text.Split(',');
+                    alfaSalida = new List<string>();
+                    foreach (string t in temp)
+                    {
+                        if (!alfaSalida.Contains(t)) { alfaSalida.Add(t); }
+                    }
+                    if (alfaSalida.Count == 0) { return false; }
                 }
                 else
                 {
