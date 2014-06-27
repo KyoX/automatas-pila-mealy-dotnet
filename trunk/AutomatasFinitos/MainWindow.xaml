@@ -1,7 +1,7 @@
 ﻿<Window x:Class="AutomatasFinitos.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Automatas Finitos" Height="745" Width="680" Icon="/AutomatasFinitos;component/Resources/Icons/ic_launcher.png" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Normal">
+        Title="Automatas Finitos" Height="745" Width="680" Icon="/AutomatasFinitos;component/Resources/Icons/ic_launcher.png" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Normal" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="129*" />
