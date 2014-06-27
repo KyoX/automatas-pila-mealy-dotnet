@@ -53,13 +53,18 @@ namespace AutomatasFinitos
             MenuItem source = (MenuItem)e.Source;
             string nombre = (string)source.Header;
             MooreGenerator mG = new MooreGenerator();
+            PDAGenerator pila = new PDAGenerator();
             if (nombre.Contains("Moore")) 
             { 
                 mG.ShowDialog();
                 moore = new MooreImplement(mG.mm);
                 this.label4.Content = "Tipo Automata : Moore";
             }
-            else { new PDAGenerator().ShowDialog(); }
+            else {
+                pila.ShowDialog();
+                pda = new PDAImplement(pila.pda);
+                this.label4.Content = "Tipo Automata : PDA";
+            }
         }
 
         // para ayuda
@@ -82,6 +87,18 @@ namespace AutomatasFinitos
         {
             moore = new MooreImplement();
             pda = new PDAImplement();
+        }
+
+
+        /*
+         * 
+         * esta esto aquí porque la mierda de .net se negaba a cerrar la aplicación
+         * así que hubo que forzar el cierre por las malas
+         * 
+        */
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown(); 
         }
     }
 }

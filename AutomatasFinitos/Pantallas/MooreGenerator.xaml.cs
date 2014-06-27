@@ -90,7 +90,7 @@ namespace AutomatasFinitos.Pantallas
 
             Regex rgx = new Regex(pattern);
             Regex comaReg = new Regex(pattern2);
-            if (this.textBox7.Text.Length > 0)
+            if (this.textBox7.Text.Length > 0)  // estados
             {
                 if (rgx.IsMatch(this.textBox7.Text) && !comaReg.IsMatch(this.textBox7.Text))
                 {
@@ -115,7 +115,7 @@ namespace AutomatasFinitos.Pantallas
             else { estados = new List<string>(); }
 
 
-            if (this.textBox8.Text.Length > 0)
+            if (this.textBox8.Text.Length > 0) // alfabeto de entrada
             {
                 if (rgx.IsMatch(this.textBox8.Text) && !comaReg.IsMatch(this.textBox8.Text))
                 {
