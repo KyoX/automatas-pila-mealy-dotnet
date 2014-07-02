@@ -61,6 +61,7 @@ namespace AutomatasFinitos.Implement
         {
             this.delay = (int)delay * 100;
             stack = new List<string>();
+            stack.Add(pda.simboloInicialPila);
             this.lastState = pda.estadoInicial;
         }
 
