@@ -115,7 +115,6 @@ namespace AutomatasFinitos
                     }
                 }
 
-
                 // pongo lo que quedó en el stack
                 Console.WriteLine("Salida: " + moore.stack);
                 this.textBox2.Text = moore.stack;
@@ -123,7 +122,20 @@ namespace AutomatasFinitos
             }
             else
             {
+                if (pda != null)
+                {
 
+                }
+                else
+                {
+
+                    // no ha seleccionado a ningún tipo de automata
+                    MessageBox.Show("No ha seleccionado ningún tipo de autómata.\n"
+                           + "Dirijase al menú generar y seleccione un tipo para\n"
+                           + "definirlo y poder seguir con la ejecución.",
+                           "Seleccione un tipo de autómata", MessageBoxButton.OK, MessageBoxImage.Stop);
+                }
+                
             }
             
         }
