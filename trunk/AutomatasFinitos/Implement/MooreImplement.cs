@@ -56,7 +56,7 @@ namespace AutomatasFinitos.Implement
             return stack;
         }
 
-        internal void inicializar(double delay)
+        public void inicializar(double delay)
         {
             stack = "&";
             lastState = mm.estadoInicial;
