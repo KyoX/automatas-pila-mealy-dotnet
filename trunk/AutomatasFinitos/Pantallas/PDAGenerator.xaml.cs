@@ -133,7 +133,9 @@ namespace AutomatasFinitos.Pantallas
 
             if (!alfaPila.Contains("&")) { alfaPila.Add("&"); }
             this.comboBox2.ItemsSource = alfaPila;
-            this.comboBox2.SelectedIndex = 0;        
+            this.comboBox2.SelectedIndex = 0;
+            this.comboBox7.ItemsSource = alfaPila;
+            this.comboBox8.ItemsSource = alfaPila;
 
         }
 
@@ -208,10 +210,15 @@ namespace AutomatasFinitos.Pantallas
         {
             if (this.comboBox3.SelectedIndex >= 0 &&
                 this.comboBox4.SelectedIndex >= 0 &&
-                this.comboBox5.SelectedIndex >= 0)
+                this.comboBox5.SelectedIndex >= 0 &&
+                this.comboBox7.SelectedIndex >= 0 &&
+                this.comboBox8.SelectedIndex >= 0 )
             {
-                string key = (string)this.comboBox3.SelectedItem + (string)this.comboBox4.SelectedItem;
-                funcT[key] = (string)this.comboBox5.SelectedItem;
+                string key = (string)this.comboBox3.SelectedItem 
+                            + (string)this.comboBox4.SelectedItem 
+                            + (string)this.comboBox7.SelectedItem;
+
+                funcT[key] = (string)this.comboBox5.SelectedItem + "," + (string)this.comboBox8.SelectedItem;
             }
             renderizarListaFuncT();
         }
