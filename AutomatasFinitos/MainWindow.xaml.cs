@@ -124,7 +124,40 @@ namespace AutomatasFinitos
             {
                 if (pda != null)
                 {
+                    pda.inicializar(this.slider1.Value);
+                    string[] data;
+                    foreach (string entrada in cintaEntradas)
+                    {
+                        string tempStack = pda.popStack();
+                        if (pda.validateTransition(entrada, tempStack))
+                        {
 
+                            temp = pda.generateTransition(entrada, tempStack);
+                            data = temp.Split(',');
+
+                            Console.WriteLine("Estados: " + pda.lastState + " -> " + data[0]);
+                            Console.WriteLine("Al stack: " + data[1]);
+
+                            pda.lastState = data[0];
+                            pda.putInStack(data[1]);
+
+                            Console.WriteLine(pda.stackToString());
+                            this.textBox2.Text = pda.stackToString();
+
+                        }
+                        else
+                        {
+                            pda.putInStack(tempStack);
+                            MessageBox.Show("El autómata no esta definido correctamente\n"
+                           + "Falta la definición para δ(" + pda.lastState + "," + entrada + "," + tempStack + ")",
+                           "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            break;
+                        }
+                    }
+
+                    bool aceptado = pda.esAceptado();
+                    Console.WriteLine("Es aceptado? : " + aceptado);
+                    if (aceptado) { this.textBox3.Text = "Aceptado"; } else { this.textBox3.Text = "Rechazado"; }
                 }
                 else
                 {
