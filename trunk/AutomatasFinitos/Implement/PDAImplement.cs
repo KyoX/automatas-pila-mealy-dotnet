@@ -33,16 +33,23 @@ namespace AutomatasFinitos.Implement
 
         /**
          * 
-         * Favor no validar si tiene elementos aquí, se supone que es primitiva
-         * la validación se tiene que hacer antes de llamarla, por eso el stack
-         * esta como publico
+         * DO NOT MERGE
+         * si no hay elementos retorna el elemento vacío.
          * 
          * */
         public string popStack()
         {
-            string temp = stack.Last();
-            stack.RemoveAt(stack.Count - 1);
-            return temp;
+            if (stack.Count > 0)
+            {
+                string temp = stack.Last();
+                stack.RemoveAt(stack.Count - 1);
+                return temp;
+            }
+            else
+            {
+                return "&";
+            }
+            
         }
          
         /**
@@ -52,7 +59,7 @@ namespace AutomatasFinitos.Implement
          * */
         public void inicializar(double delay)
         {
-            this.delay = (int) delay;
+            this.delay = (int)delay * 100;
             stack = new List<string>();
             this.lastState = pda.estadoInicial;
         }
@@ -77,5 +84,30 @@ namespace AutomatasFinitos.Implement
             return temp;
         }
 
+        /**
+         * 
+         * Convierte el contenido del stack en una csv
+         * 
+         * */
+        public string stackToString()
+        {
+            string stackString = "";
+
+            foreach (string s in stack)
+            {
+                stackString = stackString + s + ",";
+            }
+
+            return stackString.Substring(0, stackString.Length - 1);
+        }
+
+        /**
+         * 
+         * Verifica si el automata ha quedado en un estado final
+         * 
+         * */
+        public bool esAceptado(){
+            return pda.estadosFinales.Contains(lastState);
+        }
     }
 }
