@@ -87,6 +87,7 @@ namespace AutomatasFinitos
             string[] cintaEntradas = this.textBox1.Text.Split(',');
             this.textBox2.Text = "";
             this.textBox3.Text = "";
+            System.Threading.ManualResetEvent temporizador = new System.Threading.ManualResetEvent(false);
 
             string temp;
             if (moore != null)  // se quiere que se ejecute un autómata de moore
@@ -94,6 +95,9 @@ namespace AutomatasFinitos
                 moore.inicializar(this.slider1.Value);  // setea los valores necesarios para inicializar el automata de moore
                 foreach (string entrada in cintaEntradas)
                 {
+                    Console.WriteLine("---");
+                    temporizador.WaitOne(2000);
+                    Console.WriteLine("---");
                     if (moore.validateTransition(entrada))
                     {
                         temp = moore.generateOutputVal(entrada);
@@ -128,6 +132,9 @@ namespace AutomatasFinitos
                     string[] data;
                     foreach (string entrada in cintaEntradas)
                     {
+                        Console.WriteLine("---");
+                        temporizador.WaitOne(2000);
+                        Console.WriteLine("---");
                         string tempStack = pda.popStack();
                         if (pda.validateTransition(entrada, tempStack))
                         {
