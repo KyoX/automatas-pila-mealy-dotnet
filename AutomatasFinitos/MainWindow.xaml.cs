@@ -96,7 +96,7 @@ namespace AutomatasFinitos
                 foreach (string entrada in cintaEntradas)
                 {
                     Console.WriteLine("---");
-                    temporizador.WaitOne(2000);
+                    temporizador.WaitOne(1000);
                     Console.WriteLine("---");
                     if (moore.validateTransition(entrada))
                     {
@@ -189,6 +189,7 @@ namespace AutomatasFinitos
             this.label4.Content = "Tipo Automata : ---";
         }
 
+       
 
         /*
          * 
