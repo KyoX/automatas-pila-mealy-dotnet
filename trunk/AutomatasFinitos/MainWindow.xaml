@@ -37,5 +37,22 @@
         <TextBox AcceptsReturn="False" Grid.ColumnSpan="2" Height="23" HorizontalAlignment="Left" IsReadOnly="True" Margin="105,212,0,0" Name="textBox3" VerticalAlignment="Top" Width="483" />
         <Slider Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="36,49,0,0" Name="slider1" VerticalAlignment="Top" Width="100" Value="5" Maximum="20" />
         <Label Content="Velocidad de ejecución" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="142,49,0,0" Name="label6" VerticalAlignment="Top" />
+        <Canvas HorizontalAlignment="Left" Height="353" Margin="34,277,0,0" VerticalAlignment="Top" Width="597" Grid.ColumnSpan="2">
+            <Ellipse x:Name="eli1" Fill="#FF7171B0" Height="45" Canvas.Left="15" Stroke="Black" Canvas.Top="102" Width="49"/>
+            <Ellipse x:Name="eli2" Fill="#FF7171B0" Height="45" Canvas.Left="66" Stroke="Black" Canvas.Top="102" Width="49"/>
+            <Ellipse x:Name="eli3" Fill="#FF7171B0" Height="45" Canvas.Left="117" Stroke="Black" Canvas.Top="102" Width="49"/>
+            <Ellipse x:Name="eli4" Fill="#FF7171B0" Height="45" Canvas.Left="169" Stroke="Black" Canvas.Top="102" Width="49"/>
+            <Ellipse x:Name="eli5" Fill="#FF7171B0" Height="45" Canvas.Left="221" Stroke="Black" Canvas.Top="102" Width="49"/>
+            <Ellipse x:Name="eli6" Fill="#FF7171B0" Height="45" Canvas.Left="273" Stroke="Black" Canvas.Top="102" Width="49"/>
+            <Ellipse x:Name="eli7" Fill="#FF7171B0" Height="45" Canvas.Left="325" Stroke="Black" Canvas.Top="102" Width="49"/>
+            <Ellipse x:Name="eli8" Fill="#FF7171B0" Height="45" Canvas.Left="376" Stroke="Black" Canvas.Top="102" Width="49"/>
+            <Ellipse x:Name="eli9" Fill="#FF7171B0" Height="45" Canvas.Left="432" Stroke="Black" Canvas.Top="104" Width="49"/>
+            <Ellipse x:Name="eli10" Fill="#FF7171B0" Height="48" Canvas.Left="486" Stroke="Black" Canvas.Top="102" Width="52"/>
+            <Rectangle Fill="#FF268716" Height="100" Canvas.Left="446" Stroke="Black" Canvas.Top="190" Width="100"/>
+            <Label Content="Estado Actual: " Canvas.Left="28" Canvas.Top="273"/>
+            <Label Content="Estado" Canvas.Left="115" Canvas.Top="274"/>
+            <Label Content="Cadena Actual: " Canvas.Left="35" Canvas.Top="304"/>
+            <Label Content="cadena" Canvas.Left="124" Canvas.Top="306"/>
+            </Canvas>
     </Grid>
 </Window>
