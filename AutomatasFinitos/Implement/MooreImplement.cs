@@ -62,5 +62,14 @@ namespace AutomatasFinitos.Implement
             lastState = mm.estadoInicial;
             this.delay = (int)delay * 100;
         }
+
+        public List<string> obtenerListaEstados()
+        {
+            if (this.mm.estados.Count > 0) // si tiene estados
+            {
+                return this.mm.estados;
+            }
+            return new List<string>();
+        }
     }
 }
