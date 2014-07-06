@@ -24,11 +24,17 @@ namespace AutomatasFinitos.Pantallas
     {
         public Mealy_Moore mm { get; set; }
 
-        private List<string> estados = new List<string>();
+        public List<string> estados = new List<string>();
         private List<string> alfaEntrada = new List<string>();
         private List<string> alfaSalida = new List<string>();
         private Dictionary<string, string> funcT = new Dictionary<string, string>();
         private Dictionary<string, string> funcS = new Dictionary<string, string>();
+
+
+        private int cantEstados() {
+
+            return estados.Count;
+        }
         
 
         public MooreGenerator()

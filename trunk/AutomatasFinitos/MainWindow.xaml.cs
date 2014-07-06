@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using AutomatasFinitos.Implement;
 using AutomatasFinitos.Pantallas;
 using System.Threading;
+using AutomatasFinitos.Beans;
 
 namespace AutomatasFinitos
 {
@@ -24,9 +25,7 @@ namespace AutomatasFinitos
     {
         MooreImplement moore;
         PDAImplement pda;
-
-
-        public MainWindow()
+       public MainWindow()
         {
             InitializeComponent();
 
@@ -84,6 +83,9 @@ namespace AutomatasFinitos
         // ejecuta la maquina de Moore o el automata de pila de acuerdo a la definición cargada
         private void button2_Click(object sender, RoutedEventArgs e)
         {
+
+            prepararCanva();
+                             
             string[] cintaEntradas = this.textBox1.Text.Split(',');
             this.textBox2.Text = "";
             this.textBox3.Text = "";
@@ -96,7 +98,7 @@ namespace AutomatasFinitos
                 foreach (string entrada in cintaEntradas)
                 {
                     Console.WriteLine("---");
-                    temporizador.WaitOne(1000);
+                    temporizador.WaitOne(2000);
                     Console.WriteLine("---");
                     if (moore.validateTransition(entrada))
                     {
@@ -109,6 +111,10 @@ namespace AutomatasFinitos
                             + " -> " + temp);
 
                         this.textBox2.Text = moore.stack;
+                        eActual.Content = moore.lastState;
+                        cadActual.Content = entrada;
+                        CadPila.Content = moore.stack;
+
                     }
                     else
                     {
@@ -177,6 +183,7 @@ namespace AutomatasFinitos
                 }
                 
             }
+
             
         }
 
@@ -189,6 +196,55 @@ namespace AutomatasFinitos
             this.label4.Content = "Tipo Automata : ---";
         }
 
+        private void prepararCanva(){
+
+            canva1.Visibility = Visibility.Visible;
+            MooreImplement mi = new MooreImplement();
+            Mealy_Moore mem = new Mealy_Moore();
+
+           List<string> temp = new List<string>(); 
+            temp.Add("p");
+            temp.Add("w");
+            temp.Add("e");
+            temp.Add("r");
+
+            mem.estados = temp;
+            mem.estadoInicial = "p";
+
+            temp = new List<string>();
+
+            mi = new MooreImplement(mem);
+
+         int a = mi.obtenerListaEstados().Count; 
+
+         for (int i = 1 ; i <= a; i++)  
+            {
+                switch (i) { 
+                    case 1:
+                        this.eli1.Visibility = Visibility.Visible;
+                        break;
+                    case 2:
+                        this.eli2.Visibility = Visibility.Visible;
+                        break;
+                    case 3:
+                        this.eli3.Visibility = Visibility.Visible;
+                        break;
+                    case 4:
+                        this.eli4.Visibility = Visibility.Visible;
+                        break;
+                    case 5:
+                        this.eli5.Visibility = Visibility.Visible;
+                        break;
+                    case 6:
+                        this.eli6.Visibility = Visibility.Visible;
+                        break;
+                    case 7:
+                        this.eli7.Visibility = Visibility.Visible;
+                        break;                                  
+                }
+
+            }
+        }
        
 
         /*
