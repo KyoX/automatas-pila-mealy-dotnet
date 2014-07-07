@@ -64,10 +64,13 @@ namespace AutomatasFinitos.Implement
         }
 
         public List<string> obtenerListaEstados()
-        {
-            if (this.mm.estados.Count > 0) // si tiene estados
+        {      
+            if (this.mm != null)// si se creo 
             {
-                return this.mm.estados;
+                if (this.mm.estados.Count > 0) // si tiene estados
+                {
+                    return this.mm.estados;
+                }                              
             }
             return new List<string>();
         }
