@@ -82,7 +82,7 @@ namespace AutomatasFinitos.Pantallas
                 mm.funcTransicion = funcT;
                 mm.funcSalida = funcS;
                 this.Close();
-            }
+              }
             else
             {
                 MessageBox.Show("Aún faltan campos por definir", "Aviso", MessageBoxButton.OK, MessageBoxImage.Stop);

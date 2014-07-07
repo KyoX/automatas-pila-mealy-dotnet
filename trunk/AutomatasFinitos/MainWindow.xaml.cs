@@ -83,9 +83,9 @@ namespace AutomatasFinitos
         // ejecuta la maquina de Moore o el automata de pila de acuerdo a la definición cargada
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-
+            canva1.Visibility = Visibility.Visible;
             prepararCanva();
-                             
+
             string[] cintaEntradas = this.textBox1.Text.Split(',');
             this.textBox2.Text = "";
             this.textBox3.Text = "";
@@ -96,9 +96,9 @@ namespace AutomatasFinitos
             {
                 moore.inicializar(this.slider1.Value);  // setea los valores necesarios para inicializar el automata de moore
                 foreach (string entrada in cintaEntradas)
-                {
+                { 
                     Console.WriteLine("---");
-                    temporizador.WaitOne(2000);
+                    temporizador.WaitOne(500);
                     Console.WriteLine("---");
                     if (moore.validateTransition(entrada))
                     {
@@ -110,11 +110,16 @@ namespace AutomatasFinitos
                         Console.WriteLine("Transición: " + moore.lastState + "," + entrada
                             + " -> " + temp);
 
+
+                       // dibujarTransicion(eActual.ContentStringFormat, moore.lastState);
+                        
+
                         this.textBox2.Text = moore.stack;
                         eActual.Content = moore.lastState;
                         cadActual.Content = entrada;
                         CadPila.Content = moore.stack;
 
+                        
                     }
                     else
                     {
@@ -139,7 +144,7 @@ namespace AutomatasFinitos
                     foreach (string entrada in cintaEntradas)
                     {
                         Console.WriteLine("---");
-                        temporizador.WaitOne(2000);
+                        temporizador.WaitOne(500);
                         Console.WriteLine("---");
                         string tempStack = pda.popStack();
                         if (pda.validateTransition(entrada, tempStack))
@@ -197,55 +202,118 @@ namespace AutomatasFinitos
         }
 
         private void prepararCanva(){
+                 List<string> temp = new List<string>(); 
+               /**  MooreImplement mi = new MooreImplement();
+                 Mealy_Moore mem = new Mealy_Moore();
+                 temp.Add("p");
+                 temp.Add("w");
+                 temp.Add("e");
+                 mem.estados = temp;
+                 mem.estadoInicial = "p";
 
-            canva1.Visibility = Visibility.Visible;
-            MooreImplement mi = new MooreImplement();
-            Mealy_Moore mem = new Mealy_Moore();
-
-           List<string> temp = new List<string>(); 
-            temp.Add("p");
-            temp.Add("w");
-            temp.Add("e");
-            temp.Add("r");
-
-            mem.estados = temp;
-            mem.estadoInicial = "p";
-
-            temp = new List<string>();
-
-            mi = new MooreImplement(mem);
-
-         int a = mi.obtenerListaEstados().Count; 
-
-         for (int i = 1 ; i <= a; i++)  
+                 temp = new List<string>();
+          
+            mi = new MooreImplement(mem);**/
+           
+            temp = moore.obtenerListaEstados();
+            int a = temp.Count;
+                                  
+         for (int i = 0 ; i < a; i++)  
             {
-                switch (i) { 
-                    case 1:
+                switch (i) {
+                  
+                    case 0:
                         this.eli1.Visibility = Visibility.Visible;
+                        this.le1.Content = temp[i];
+                        break;
+                    case 1:
+                        this.eli2.Visibility = Visibility.Visible;
+                        this.le2.Content = temp[i];
                         break;
                     case 2:
-                        this.eli2.Visibility = Visibility.Visible;
+                        this.eli3.Visibility = Visibility.Visible;
+                        this.le3.Content = temp[i];
                         break;
                     case 3:
-                        this.eli3.Visibility = Visibility.Visible;
+                        this.eli4.Visibility = Visibility.Visible;
+                        this.le4.Content = temp[i];
                         break;
                     case 4:
-                        this.eli4.Visibility = Visibility.Visible;
+                        this.eli5.Visibility = Visibility.Visible;
+                        this.le5.Content = temp[i];
                         break;
                     case 5:
-                        this.eli5.Visibility = Visibility.Visible;
+                        this.eli6.Visibility = Visibility.Visible;
+                        this.le6.Content = temp[i];
                         break;
                     case 6:
-                        this.eli6.Visibility = Visibility.Visible;
-                        break;
-                    case 7:
                         this.eli7.Visibility = Visibility.Visible;
+                        this.le7.Content = temp[i];
                         break;                                  
                 }
 
             }
         }
-       
+
+        private void dibujarTransicion(String act, String sig)
+        {
+            List<string> temp = new List<string>();
+            temp = moore.obtenerListaEstados();
+
+            int a = temp.IndexOf(act);
+            int b = temp.IndexOf(sig);
+
+           switch (a)
+            {
+                case 0:
+                    this.eli1.Fill = new SolidColorBrush(Colors.Blue);
+                    break;
+                case 1:
+                    this.eli2.Fill = new SolidColorBrush(Colors.Blue);
+                    break;
+                case 2:
+                    this.eli3.Fill = new SolidColorBrush(Colors.Blue);
+                    break;
+                case 3:
+                    this.eli4.Fill = new SolidColorBrush(Colors.Blue);
+                    break;
+                case 4:
+                    this.eli5.Fill = new SolidColorBrush(Colors.Blue);
+                    break;
+                case 5:
+                    this.eli6.Fill = new SolidColorBrush(Colors.Blue);
+                    break;
+                case 6:
+                    this.eli7.Fill = new SolidColorBrush(Colors.Blue);
+                    break;
+            }
+
+           switch (b)
+           {
+               case 0:
+                   this.eli1.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+               case 1:
+                   this.eli2.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+               case 2:
+                   this.eli3.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+               case 3:
+                   this.eli4.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+               case 4:
+                   this.eli5.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+               case 5:
+                   this.eli6.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+               case 6:
+                   this.eli7.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+           }
+        }
+
 
         /*
          * 

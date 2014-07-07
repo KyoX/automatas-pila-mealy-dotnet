@@ -37,20 +37,27 @@
         <TextBox AcceptsReturn="False" Grid.ColumnSpan="2" Height="23" HorizontalAlignment="Left" IsReadOnly="True" Margin="105,212,0,0" Name="textBox3" VerticalAlignment="Top" Width="483" />
         <Slider Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="36,49,0,0" Name="slider1" VerticalAlignment="Top" Width="100" Value="5" Maximum="20" />
         <Label Content="Velocidad de ejecución" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="142,49,0,0" Name="label6" VerticalAlignment="Top" />
-        <Canvas x:Name="canva1"  HorizontalAlignment="Left" Height="398" Margin="32,272,0,0" VerticalAlignment="Top" Width="597" Grid.ColumnSpan="2" Visibility="Collapsed">
-            <Ellipse x:Name="eli1" Fill="#FF7171B0" Height="45" Canvas.Left="15" Stroke="Black" Canvas.Top="102" Width="49" Visibility="Collapsed"/>
-            <Ellipse x:Name="eli2" Fill="#FF7171B0" Height="45" Canvas.Left="66" Stroke="Black" Canvas.Top="102" Width="49" Visibility="Collapsed"/>
-            <Ellipse x:Name="eli3" Fill="#FF7171B0" Height="45" Canvas.Left="117" Stroke="Black" Canvas.Top="102" Width="49" Visibility="Collapsed"/>
-            <Ellipse x:Name="eli4" Fill="#FF7171B0" Height="45" Canvas.Left="169" Stroke="Black" Canvas.Top="102" Width="49" Visibility="Collapsed"/>
-            <Ellipse x:Name="eli5" Fill="#FF7171B0" Height="45" Canvas.Left="221" Stroke="Black" Canvas.Top="102" Width="49" Visibility="Collapsed"/>
-            <Ellipse x:Name="eli6" Fill="#FF7171B0" Height="45" Canvas.Left="273" Stroke="Black" Canvas.Top="102" Width="49" Visibility="Collapsed"/>
-            <Ellipse x:Name="eli7" Fill="#FF7171B0" Height="45" Canvas.Left="325" Stroke="Black" Canvas.Top="102" Width="49" Visibility="Collapsed"/>
+        <Canvas x:Name="canva1"  HorizontalAlignment="Left" Height="398" Margin="32,272,0,0" VerticalAlignment="Top" Width="597" Grid.ColumnSpan="2">
+            <Ellipse x:Name="eli1" Fill="Blue" Height="45" Canvas.Left="17" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
+            <Ellipse x:Name="eli2" Fill="Blue" Height="45" Canvas.Left="101" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
+            <Ellipse x:Name="eli3" Fill="Blue" Height="45" Canvas.Left="181" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
+            <Ellipse x:Name="eli4" Fill="Blue" Height="45" Canvas.Left="264" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
+            <Ellipse x:Name="eli5" Fill="Blue" Height="45" Canvas.Left="343" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
+            <Ellipse x:Name="eli6" Fill="Blue" Height="45" Canvas.Left="420" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
+            <Ellipse x:Name="eli7" Fill="Blue" Height="45" Canvas.Left="500" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
             <Label Content="Estado Actual: " Canvas.Left="28" Canvas.Top="273"/>
             <Label x:Name="eActual" Content="" Canvas.Left="115" Canvas.Top="274" Width="170"/>
             <Label Content="Cadena Actual: " Canvas.Left="25" Canvas.Top="301"/>
             <Label x:Name="cadActual" Content="" Canvas.Left="124" Canvas.Top="306" Width="162"/>
             <Label Content="Cadena de Pila" Canvas.Left="27" Canvas.Top="330"/>
-            <Label x:Name="CadPila" Content="" Canvas.Left="120" Canvas.Top="333" RenderTransformOrigin="0.254,0" Width="163"/>
+            <Label x:Name="CadPila" Content="" Canvas.Left="120" Canvas.Top="333"/>
+            <Label x:Name="le1" Content="" Canvas.Left="33" Canvas.Top="160" />
+            <Label x:Name="le2" Content="" Canvas.Left="108" Canvas.Top="160"/>
+            <Label x:Name="le3" Content="" Canvas.Left="198" Canvas.Top="160"/>
+            <Label x:Name="le4" Content="" Canvas.Left="280" Canvas.Top="160"/>
+            <Label x:Name="le5" Content="" Canvas.Left="355" Canvas.Top="160"/>
+            <Label x:Name="le6" Content="" Canvas.Left="437" Canvas.Top="160"/>
+            <Label x:Name="le7" Content="" Canvas.Left="522" Canvas.Top="160"/>
         </Canvas>
     </Grid>
 </Window>
