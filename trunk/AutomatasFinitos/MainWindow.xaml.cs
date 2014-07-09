@@ -83,9 +83,7 @@ namespace AutomatasFinitos
         // ejecuta la maquina de Moore o el automata de pila de acuerdo a la definición cargada
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            canva1.Visibility = Visibility.Visible;
-            prepararCanva();
-
+            //limpiar();
             string[] cintaEntradas = this.textBox1.Text.Split(',');
             this.textBox2.Text = "";
             this.textBox3.Text = "";
@@ -95,6 +93,8 @@ namespace AutomatasFinitos
             if (moore != null)  // se quiere que se ejecute un autómata de moore
             {
                 moore.inicializar(this.slider1.Value);  // setea los valores necesarios para inicializar el automata de moore
+                prepararCanva(); // dibuja los estados 
+
                 foreach (string entrada in cintaEntradas)
                 { 
                     Console.WriteLine("---");
@@ -106,14 +106,14 @@ namespace AutomatasFinitos
                         Console.WriteLine("Salida: " + temp);
                         this.textBox3.Text = this.textBox3.Text + temp;
 
+                        String eAnt = moore.lastState;
+                      
                         temp = moore.generateTransition(entrada);
                         Console.WriteLine("Transición: " + moore.lastState + "," + entrada
                             + " -> " + temp);
 
-
-                       // dibujarTransicion(eActual.ContentStringFormat, moore.lastState);
+                        dibujarTransicion(eAnt,moore.lastState);
                         
-
                         this.textBox2.Text = moore.stack;
                         eActual.Content = moore.lastState;
                         cadActual.Content = entrada;
@@ -163,7 +163,7 @@ namespace AutomatasFinitos
                             this.textBox2.Text = pda.stackToString();
 
                         }
-                        else
+                        else 
                         {
                             pda.putInStack(tempStack);
                             MessageBox.Show("El autómata no esta definido correctamente\n"
@@ -195,34 +195,75 @@ namespace AutomatasFinitos
         // pone en blanco los campos y stack/salida, tambien la definición de los automatas
         private void button3_Click(object sender, RoutedEventArgs e)
         {
-            moore = null;
-            pda = null;
+              moore = null;
+              pda = null;
+              limpiar();
+        }
+
+        private void limpiar(){
+            
             this.textBox1.Text = "";
+            this.textBox2.Text = "";
+            this.textBox3.Text = "";
             this.label4.Content = "Tipo Automata : ---";
+            this.canva1.Visibility = Visibility.Hidden;
+            this.eli1.Visibility = Visibility.Hidden; this.le1.Content = "";
+            this.eli1.Fill = new SolidColorBrush(Colors.Blue);
+            this.eli2.Visibility = Visibility.Hidden; this.le1.Content = "";
+            this.eli2.Fill = new SolidColorBrush(Colors.Blue);
+            this.eli3.Visibility = Visibility.Hidden; this.le1.Content = "";
+            this.eli3.Fill = new SolidColorBrush(Colors.Blue);
+            this.eli4.Visibility = Visibility.Hidden; this.le1.Content = "";
+            this.eli4.Fill = new SolidColorBrush(Colors.Blue);
+            this.eli5.Visibility = Visibility.Hidden; this.le1.Content = "";
+            this.eli5.Fill = new SolidColorBrush(Colors.Blue);
+            this.eli6.Visibility = Visibility.Hidden; this.le1.Content = "";
+            this.eli6.Fill = new SolidColorBrush(Colors.Blue);
+            this.eli7.Visibility = Visibility.Hidden; this.le1.Content = "";
+            this.eli7.Fill = new SolidColorBrush(Colors.Blue);
+            eActual.Content = "";
+            cadActual.Content = "";
+            CadPila.Content = "";        
         }
 
         private void prepararCanva(){
-                 List<string> temp = new List<string>(); 
-               /**  MooreImplement mi = new MooreImplement();
-                 Mealy_Moore mem = new Mealy_Moore();
-                 temp.Add("p");
-                 temp.Add("w");
-                 temp.Add("e");
-                 mem.estados = temp;
-                 mem.estadoInicial = "p";
+            List<string> temp = new List<string>(); 
+            //Colorear el estado inicial
+           temp = moore.obtenerListaEstados();
+           int ini = temp.IndexOf(moore.lastState);
 
-                 temp = new List<string>();
-          
-            mi = new MooreImplement(mem);**/
+          switch (ini)
+           {
+               case 0:
+                   this.eli1.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+               case 1:
+                   this.eli2.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+               case 2:
+                   this.eli3.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+               case 3:
+                   this.eli4.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+               case 4:
+                   this.eli5.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+               case 5:
+                   this.eli6.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+               case 6:
+                   this.eli7.Fill = new SolidColorBrush(Colors.Yellow);
+                   break;
+           }
            
-            temp = moore.obtenerListaEstados();
+
             int a = temp.Count;
                                   
          for (int i = 0 ; i < a; i++)  
             {
                 switch (i) {
-                  
-                    case 0:
+                   case 0:
                         this.eli1.Visibility = Visibility.Visible;
                         this.le1.Content = temp[i];
                         break;
@@ -253,6 +294,8 @@ namespace AutomatasFinitos
                 }
 
             }
+        
+         this.canva1.Visibility = Visibility.Visible;
         }
 
         private void dibujarTransicion(String act, String sig)
