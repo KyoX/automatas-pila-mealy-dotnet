@@ -37,7 +37,7 @@
         <TextBox AcceptsReturn="False" Grid.ColumnSpan="2" Height="23" HorizontalAlignment="Left" IsReadOnly="True" Margin="105,212,0,0" Name="textBox3" VerticalAlignment="Top" Width="483" />
         <Slider Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="36,49,0,0" Name="slider1" VerticalAlignment="Top" Width="100" Value="5" Maximum="20" />
         <Label Content="Velocidad de ejecución" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="142,49,0,0" Name="label6" VerticalAlignment="Top" />
-        <Canvas x:Name="canva1"  HorizontalAlignment="Left" Height="398" Margin="32,272,0,0" VerticalAlignment="Top" Width="597" Grid.ColumnSpan="2" Visibility="Hidden">
+        <Canvas x:Name="canva1"  HorizontalAlignment="Left" Height="398" Margin="32,272,0,0" VerticalAlignment="Top" Width="597" Grid.ColumnSpan="2" Visibility="Visible">
             <Ellipse x:Name="eli1" Fill="Blue" Height="45" Canvas.Left="17" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
             <Ellipse x:Name="eli2" Fill="Blue" Height="45" Canvas.Left="101" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
             <Ellipse x:Name="eli3" Fill="Blue" Height="45" Canvas.Left="181" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
@@ -58,8 +58,8 @@
             <Label x:Name="le5" Content="" Canvas.Left="355" Canvas.Top="160"/>
             <Label x:Name="le6" Content="" Canvas.Left="437" Canvas.Top="160"/>
             <Label x:Name="le7" Content="" Canvas.Left="522" Canvas.Top="160"/>
-            <Label Canvas.Left="354" Canvas.Top="273" Content="Es Aceptado?" Height="28" Name="PDAq" Visibility="Hidden" />
-            <Label Canvas.Left="390" Canvas.Top="306" Height="28" Name="PDAres" Visibility="Hidden" />
+            <Label x:Name="PDAq" Canvas.Left="354" Canvas.Top="273" Content="Es Aceptado?" Height="28"  Visibility="Hidden" />
+            <Label x:Name="PDAres" Canvas.Left="390" Canvas.Top="306" Height="28"  Visibility="Hidden" />
         </Canvas>
     </Grid>
 </Window>
