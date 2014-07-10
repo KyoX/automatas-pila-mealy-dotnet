@@ -75,7 +75,7 @@
     </Compile>
     <Compile Include="Beans\Mealy_Moore.cs" />
     <Compile Include="Beans\PDA.cs" />
-    <Compile Include="Implement\MooreImplement.cs" />
+    <Compile Include="Implement\MealyImplement.cs" />
     <Compile Include="Implement\PDAImplement.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -89,7 +89,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pantallas\MooreGenerator.xaml">
+    <Page Include="Pantallas\MealyGenerator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -105,8 +105,8 @@
     <Compile Include="Pantallas\HowTo.xaml.cs">
       <DependentUpon>HowTo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pantallas\MooreGenerator.xaml.cs">
-      <DependentUpon>MooreGenerator.xaml</DependentUpon>
+    <Compile Include="Pantallas\MealyGenerator.xaml.cs">
+      <DependentUpon>MealyGenerator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pantallas\PDAGenerator.xaml.cs">
       <DependentUpon>PDAGenerator.xaml</DependentUpon>
