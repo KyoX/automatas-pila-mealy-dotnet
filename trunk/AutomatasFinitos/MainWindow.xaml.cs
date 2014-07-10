@@ -57,11 +57,11 @@ namespace AutomatasFinitos
             mealy = null;
             pda = null;
 
-            if (nombre.Contains("Moore")) 
+            if (nombre.Contains("Mealy")) 
             { 
                 mG.ShowDialog();
                 mealy = new MealyImplement(mG.mm);
-                this.label4.Content = "Tipo Automata : Moore";
+                this.label4.Content = "Tipo Automata : Mealy";
             }
             else {
                 pila.ShowDialog();
@@ -79,7 +79,7 @@ namespace AutomatasFinitos
             else { new HowTo().ShowDialog(); }
         }
 
-        // ejecuta la maquina de Moore o el automata de pila de acuerdo a la definición cargada
+        // ejecuta la maquina de Mealy o el automata de pila de acuerdo a la definición cargada
         private void button2_Click(object sender, RoutedEventArgs e)
         {
             //limpiar();
@@ -91,9 +91,9 @@ namespace AutomatasFinitos
             System.Threading.ManualResetEvent temporizador = new System.Threading.ManualResetEvent(false);
 
             string temp;
-            if (mealy != null)  // se quiere que se ejecute un autómata de moore
+            if (mealy != null)  // se quiere que se ejecute un autómata de Mealy
             {
-                mealy.inicializar(this.slider1.Value);  // setea los valores necesarios para inicializar el automata de moore
+                mealy.inicializar(this.slider1.Value);  // setea los valores necesarios para inicializar el automata de Mealy
                 prepararCanvaMoore(); // dibuja los estados 
 
                 foreach (string entrada in cintaEntradas)
@@ -110,7 +110,7 @@ namespace AutomatasFinitos
                         String eAnt = mealy.lastState;
                       
                         temp = mealy.generateTransition(entrada);
-                        Console.WriteLine("Transición: " + mealy.lastState + "," + entrada
+                        Console.WriteLine("Transición: " + eAnt + "," + entrada
                             + " -> " + temp);
 
                         dibujarTransicionMoore(eAnt,mealy.lastState);
@@ -151,14 +151,15 @@ namespace AutomatasFinitos
                         if (pda.validateTransition(entrada, tempStack))
                         {
 
+                            String eAnt = pda.lastState;
+
                             temp = pda.generateTransition(entrada, tempStack);
                             data = temp.Split(',');
 
-                            Console.WriteLine("Estados: " + pda.lastState + " -> " + data[0]);
+                            Console.WriteLine("Estados: " + eAnt + " -> " + data[0]);
                             Console.WriteLine("Al stack: " + data[1]);
 
-                            String eAnt = pda.lastState;
-
+                            
                             pda.lastState = data[0];
                             pda.putInStack(data[1]);
 
