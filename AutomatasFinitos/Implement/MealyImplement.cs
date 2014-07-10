@@ -6,7 +6,7 @@ using AutomatasFinitos.Beans;
 
 namespace AutomatasFinitos.Implement
 {
-    class MooreImplement
+    class MealyImplement
     {
         private Mealy_Moore mm;
         public int delay { get; set; }
@@ -14,11 +14,11 @@ namespace AutomatasFinitos.Implement
         public string lastState { get; set; } // estado en que ha quedado el automata
 
 
-        public MooreImplement(Mealy_Moore moore) { 
+        public MealyImplement(Mealy_Moore moore) { 
             this.mm = moore; 
         }
 
-        public MooreImplement() { }
+        public MealyImplement() { }
         /**
          *
          * valido solo la función de transición porque en caso de no existir no 

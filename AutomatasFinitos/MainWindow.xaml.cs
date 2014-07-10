@@ -23,7 +23,7 @@ namespace AutomatasFinitos
     /// </summary>
     public partial class MainWindow : Window
     {
-        MooreImplement moore;
+        MealyImplement mealy;
         PDAImplement pda;
         
        public MainWindow()
@@ -54,13 +54,13 @@ namespace AutomatasFinitos
             MooreGenerator mG = new MooreGenerator();
             PDAGenerator pila = new PDAGenerator();
 
-            moore = null;
+            mealy = null;
             pda = null;
 
             if (nombre.Contains("Moore")) 
             { 
                 mG.ShowDialog();
-                moore = new MooreImplement(mG.mm);
+                mealy = new MealyImplement(mG.mm);
                 this.label4.Content = "Tipo Automata : Moore";
             }
             else {
@@ -91,9 +91,9 @@ namespace AutomatasFinitos
             System.Threading.ManualResetEvent temporizador = new System.Threading.ManualResetEvent(false);
 
             string temp;
-            if (moore != null)  // se quiere que se ejecute un autómata de moore
+            if (mealy != null)  // se quiere que se ejecute un autómata de moore
             {
-                moore.inicializar(this.slider1.Value);  // setea los valores necesarios para inicializar el automata de moore
+                mealy.inicializar(this.slider1.Value);  // setea los valores necesarios para inicializar el automata de moore
                 prepararCanvaMoore(); // dibuja los estados 
 
                 foreach (string entrada in cintaEntradas)
@@ -101,39 +101,34 @@ namespace AutomatasFinitos
                     Console.WriteLine("---");
                     temporizador.WaitOne(500);
                     Console.WriteLine("---");
-                    if (moore.validateTransition(entrada))
+                    if (mealy.validateTransition(entrada))
                     {
-                        temp = moore.generateOutputVal(entrada);
+                        temp = mealy.generateOutputVal(entrada);
                         Console.WriteLine("Salida: " + temp);
                         this.textBox3.Text = this.textBox3.Text + temp;
 
-                        String eAnt = moore.lastState;
+                        String eAnt = mealy.lastState;
                       
-                        temp = moore.generateTransition(entrada);
-                        Console.WriteLine("Transición: " + moore.lastState + "," + entrada
+                        temp = mealy.generateTransition(entrada);
+                        Console.WriteLine("Transición: " + mealy.lastState + "," + entrada
                             + " -> " + temp);
 
-                        dibujarTransicionMoore(eAnt,moore.lastState);
+                        dibujarTransicionMoore(eAnt,mealy.lastState);
                         
-                        this.textBox2.Text = moore.stack;
-                        eActual.Content = moore.lastState;
+                        this.textBox2.Text = mealy.stack;
+                        eActual.Content = mealy.lastState;
                         cadActual.Content = cadAct + entrada;
-                        pila = pila + moore.stack;
-                        CadPila.Content = pila + moore.stack;
+                        pila = pila + mealy.stack;
+                        CadPila.Content = pila + mealy.stack;
                    }
                     else
                     {
                         MessageBox.Show("El autómata no esta definido correctamente\n"
-                            + "Falta la definición para δ(" + moore.lastState + "," + entrada + ")",
+                            + "Falta la definición para δ(" + mealy.lastState + "," + entrada + ")",
                             "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         break;
                     }
                 }
-
-                // pongo lo que quedó en el stack
-                Console.WriteLine("Salida: " + moore.stack);
-                this.textBox2.Text = moore.stack;
-                this.textBox3.Text = this.textBox3.Text + moore.stack;
             }
             else
             {
@@ -212,7 +207,7 @@ namespace AutomatasFinitos
         // pone en blanco los campos y stack/salida, tambien la definición de los automatas
         private void button3_Click(object sender, RoutedEventArgs e)
         {
-              moore = null;
+              mealy = null;
               pda = null;
               limpiar();
         }
@@ -248,8 +243,8 @@ namespace AutomatasFinitos
         private void prepararCanvaMoore(){
             List<string> temp = new List<string>(); 
             //Colorear el estado inicial
-           temp = moore.obtenerListaEstados();
-           int ini = temp.IndexOf(moore.lastState);
+           temp = mealy.obtenerListaEstados();
+           int ini = temp.IndexOf(mealy.lastState);
 
           switch (ini)
            {
@@ -391,7 +386,7 @@ namespace AutomatasFinitos
         private void dibujarTransicionMoore(String act, String sig)
         {
             List<string> temp = new List<string>();
-            temp = moore.obtenerListaEstados();
+            temp = mealy.obtenerListaEstados();
 
             int a = temp.IndexOf(act);
             int b = temp.IndexOf(sig);
