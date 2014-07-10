@@ -51,7 +51,6 @@ namespace AutomatasFinitos.Implement
             }
             
         }
-         
         /**
          * 
          * Inicializa el pda con los datos necesarios para la ejecución
@@ -109,6 +108,18 @@ namespace AutomatasFinitos.Implement
          * */
         public bool esAceptado(){
             return pda.estadosFinales.Contains(lastState);
+        }
+
+        public List<string> obtenerListaEstados() {
+
+            if (this.pda != null)// si se creo 
+            {
+                if (this.pda.estados.Count > 0) // si tiene estados
+                {
+                    return this.pda.estados;
+                }
+            }
+            return new List<string>();
         }
     }
 }
