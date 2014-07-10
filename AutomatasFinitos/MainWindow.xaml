@@ -25,8 +25,8 @@
                 <MenuItem Header="Salir" />
             </MenuItem>
             <MenuItem Header="Generar" Click="MenuItem_Click_1">
-                <MenuItem Header="Automata de pila" />
-                <MenuItem Header="Máquina de Moore" />
+                <MenuItem Header="Automata de Pila" />
+                <MenuItem Header="Máquina de Mealy" />
             </MenuItem>
             <MenuItem Header="Ayuda" Click="MenuItem_Click_2">
                 <MenuItem Header="Como usar este programa" />
