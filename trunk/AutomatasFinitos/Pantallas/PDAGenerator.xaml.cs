@@ -32,6 +32,18 @@ namespace AutomatasFinitos.Pantallas
         public PDAGenerator()
         {
             InitializeComponent();
+
+            List<string> temp = new List<string>();
+            this.comboBox9.ItemsSource = temp;
+
+            for (int i = 2; i < 8; i++)
+            {
+                temp.Add("" + i);
+            }
+
+            this.comboBox9.ItemsSource = temp;
+            this.comboBox9.SelectedIndex = 0;
+            if (validarEntradas()) { llenarListas(); }
         }
 
         private bool validarEntradas()
@@ -42,29 +54,17 @@ namespace AutomatasFinitos.Pantallas
             Regex rgx = new Regex(pattern);
             Regex comaReg = new Regex(pattern2);
 
-            if (this.textBox1.Text.Length > 0) // estados
+            string valor = (string)this.comboBox9.SelectedValue;
+            estados = new List<string>();
+            int cantEstados = Convert.ToInt32(valor);
+            estadosFinalesDisp = new List<string>();
+            for (int i = 0; i < cantEstados; i++)
             {
-                if (rgx.IsMatch(this.textBox1.Text) && !comaReg.IsMatch(this.textBox1.Text))
-                {
-                    this.textBox1.Text = this.textBox1.Text.Replace(" ", String.Empty).Trim();
-                    if (this.textBox1.Text.EndsWith(",")) { this.textBox1.Text = this.textBox1.Text.Substring(0, this.textBox1.Text.Length - 1); }
-                    string[] tempEstados = this.textBox1.Text.Split(',');
-                    estados = new List<string>();
-                    foreach (string t in tempEstados)
-                    {
-                        if (!estados.Contains(t)) { estados.Add(t); }
-                        if (!estadosFinalesDisp.Contains(t)) { estadosFinalesDisp.Add(t); }
-                    }
-                    if (estados.Count == 0) { return false; }
-                }
-                else
-                {
-                    MessageBox.Show("El formato de " + this.textBox1.Text + " NO es valido.\n"
-                        + "Favor revise el campo de estados.", "Formato Invalido",
-                        MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return false;
-                }
+                estados.Add("q" + i);
+                estadosFinalesDisp.Add("q" + i);
             }
+
+
 
 
             if (this.textBox2.Text.Length > 0)  // alfabeto de entrada
@@ -246,6 +246,11 @@ namespace AutomatasFinitos.Pantallas
             {
                 MessageBox.Show("Aún faltan campos por definir", "Aviso", MessageBoxButton.OK, MessageBoxImage.Stop);
             }   
+        }
+
+        private void comboBox9_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (validarEntradas()) { llenarListas(); }
         }
     }
 }
