@@ -40,10 +40,23 @@ namespace AutomatasFinitos.Pantallas
         public MooreGenerator()
         {
             InitializeComponent();
+
+            List<string> temp = new List<string>();
+            this.comboBox8.ItemsSource = temp;
+
+            for (int i = 2; i < 8; i++)
+            {
+                temp.Add("" + i);
+            }
+
+            this.comboBox8.ItemsSource = temp;
+            this.comboBox8.SelectedIndex = 0;
+            if (validarEntradas()) { llenarListas(); }
             
         }
 
-        private void llenarListas(){
+        private void llenarListas()
+        {
             this.comboBox7.ItemsSource = estados;
             if (estados.Count > 0) { this.comboBox7.SelectedIndex = 0; }
             
@@ -65,7 +78,7 @@ namespace AutomatasFinitos.Pantallas
         private void button3_Click(object sender, RoutedEventArgs e)
         {
 
-            if (validarEntradas() && this.textBox7.Text.Length > 0 
+            if (validarEntradas() 
                 && this.textBox8.Text.Length > 0 && this.textBox9.Text.Length > 0 
                 && estados.Count > 0 && alfaEntrada.Count > 0
                 && alfaSalida.Count > 0 && funcS.Count > 0 && funcT.Count > 0)
@@ -96,29 +109,14 @@ namespace AutomatasFinitos.Pantallas
 
             Regex rgx = new Regex(pattern);
             Regex comaReg = new Regex(pattern2);
-            if (this.textBox7.Text.Length > 0)  // estados
+
+            string valor = (string)this.comboBox8.SelectedValue;
+            estados = new List<string>();
+            int cantEstados = Convert.ToInt32(valor);
+            for (int i = 0; i < cantEstados; i++)
             {
-                if (rgx.IsMatch(this.textBox7.Text) && !comaReg.IsMatch(this.textBox7.Text))
-                {
-                    this.textBox7.Text = this.textBox7.Text.Replace(" ", String.Empty).Trim();
-                    if (this.textBox7.Text.EndsWith(",")) { this.textBox7.Text = this.textBox7.Text.Substring(0, this.textBox7.Text.Length - 1); }
-                    string[] tempEstados = this.textBox7.Text.Split(',');
-                    estados = new List<string>();
-                    foreach (string t in tempEstados)
-                    {
-                        if (!estados.Contains(t)) { estados.Add(t); }
-                    }
-                    if (estados.Count == 0) { return false; }
-                }
-                else
-                {
-                    MessageBox.Show("El formato de " + this.textBox7.Text + " NO es valido.\n"
-                        + "Favor revise el campo de estados.", "Formato Invalido",
-                        MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return false;
-                }
+                estados.Add("q" + i);
             }
-            else { estados = new List<string>(); }
 
 
             if (this.textBox8.Text.Length > 0) // alfabeto de entrada
@@ -251,6 +249,11 @@ namespace AutomatasFinitos.Pantallas
                 funcS.Remove(key.Substring(2, key.LastIndexOf(")") - 2));
                 renderizarListaFuncS();
             }
+        }
+
+        private void comboBox8_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (validarEntradas()) { llenarListas(); }
         }
     }
 }

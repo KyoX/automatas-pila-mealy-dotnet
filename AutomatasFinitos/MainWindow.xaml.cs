@@ -145,7 +145,7 @@ namespace AutomatasFinitos
 
                     this.PDAq.Visibility = Visibility.Visible;
                     this.PDAres.Visibility = Visibility.Visible;
-
+                    
                     string[] data;
                     foreach (string entrada in cintaEntradas)
                     {
