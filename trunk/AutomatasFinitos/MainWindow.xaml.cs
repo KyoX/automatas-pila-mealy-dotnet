@@ -168,6 +168,7 @@ namespace AutomatasFinitos
 
                     foreach (string entrada in cintaEntradas)
                     {
+                        esperar1Seg();
                         this.textBox4.Text = this.textBox4.Text
                            + "\t\t-----------------------------------------------------------------------\n";
                         string tempStack = pda.popStack();
