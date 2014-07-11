@@ -30,6 +30,6 @@
         </Menu>
         <Label Content="Salida:" Height="28" HorizontalAlignment="Left" Margin="35,210,0,0" Name="label5" VerticalAlignment="Top" />
         <TextBox AcceptsReturn="False" Grid.ColumnSpan="2" Height="23" HorizontalAlignment="Left" IsReadOnly="True" Margin="105,212,0,0" Name="textBox3" VerticalAlignment="Top" Width="483" />
-        <TextBox Height="249" HorizontalAlignment="Left" Margin="36,257,0,0" Name="textBox4" VerticalAlignment="Top" Width="552" Grid.ColumnSpan="2" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" />
+        <TextBox Height="249" HorizontalAlignment="Left" Margin="36,257,0,0" Name="textBox4" VerticalAlignment="Top" Width="552" Grid.ColumnSpan="2" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
     </Grid>
 </Window>
