@@ -44,7 +44,7 @@ namespace AutomatasFinitos.Pantallas
             List<string> temp = new List<string>();
             this.comboBox8.ItemsSource = temp;
 
-            for (int i = 2; i < 8; i++)
+            for (int i = 2; i <= 15; i++)
             {
                 temp.Add("" + i);
             }
@@ -72,6 +72,7 @@ namespace AutomatasFinitos.Pantallas
         private void button4_Click(object sender, RoutedEventArgs e)
         {
             mm = null;
+            this.DialogResult = false;
             this.Close();
         }
 
@@ -94,6 +95,7 @@ namespace AutomatasFinitos.Pantallas
                 mm.estadoInicial = (string)this.comboBox7.SelectedItem;
                 mm.funcTransicion = funcT;
                 mm.funcSalida = funcS;
+                this.DialogResult = true;
                 this.Close();
               }
             else
