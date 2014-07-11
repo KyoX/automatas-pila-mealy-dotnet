@@ -116,7 +116,7 @@ namespace AutomatasFinitos
                 {
                     this.textBox4.Text = this.textBox4.Text
                             + "-----------------------------------------------------------------------\n";
-                    //esperar1Seg();
+                    esperar1Seg();
                     if (mealy.validateTransition(entrada))
                     {
                         temp = mealy.generateOutputVal(entrada);
@@ -161,12 +161,12 @@ namespace AutomatasFinitos
                     string[] data;
 
                     this.textBox4.Text = this.textBox4.Text
-                            + "Stack\t\t|\t\tFunción de transición\n";
+                            + "\t\tStack\t\t|\t\tFunción de transición\n";
 
                     foreach (string entrada in cintaEntradas)
                     {
                         this.textBox4.Text = this.textBox4.Text
-                           + "-----------------------------------------------------------------------\n";
+                           + "\t\t-----------------------------------------------------------------------\n";
                         string tempStack = pda.popStack();
                         if (pda.validateTransition(entrada, tempStack))
                         {
@@ -183,7 +183,7 @@ namespace AutomatasFinitos
                                 + "\t\t|\t\t";
 
                             this.textBox4.Text = this.textBox4.Text
-                                + "δ("
+                                + "\t\tδ("
                                 + eAnt + "," + entrada
                                 + ") := "
                                 + data[0]
@@ -211,7 +211,7 @@ namespace AutomatasFinitos
                     if (aceptado) {
                         this.textBox3.Text = "Aceptado";
                         this.textBox4.Text = this.textBox4.Text
-                            + "\nLa palabra: "
+                            + "\n\t\tLa palabra: "
                             + this.textBox1.Text.Replace(",", String.Empty)
                             + " Es aceptada por el PDA";
                         
@@ -219,7 +219,7 @@ namespace AutomatasFinitos
                     else {
                         this.textBox3.Text = "Rechazado";
                         this.textBox4.Text = this.textBox4.Text
-                            + "\nLa palabra: "
+                            + "\n\t\tLa palabra: "
                             + this.textBox1.Text.Replace(",", String.Empty)
                             + " Es rechazada por el PDA";
                     }
