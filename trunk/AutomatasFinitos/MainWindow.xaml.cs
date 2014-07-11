@@ -112,7 +112,7 @@ namespace AutomatasFinitos
                 mealy.inicializar();  // setea los valores necesarios para inicializar el automata de Mealy
 
                 this.textBox4.Text = this.textBox4.Text
-                            + "\t\tFunción de salida\t\t|\t\tFunción de transición\n";
+                            + "\n\t\tFunción de salida\t\t|\t\tFunción de transición\n";
 
                 foreach (string entrada in cintaEntradas)
                 {
@@ -164,7 +164,7 @@ namespace AutomatasFinitos
                     string[] data;
 
                     this.textBox4.Text = this.textBox4.Text
-                            + "\t\tStack\t\t|\t\tFunción de transición\n";
+                            + "\n\t\tStack\t\t|\t\tFunción de transición\n";
 
                     foreach (string entrada in cintaEntradas)
                     {
@@ -181,7 +181,8 @@ namespace AutomatasFinitos
                             data = temp.Split(',');
 
                             this.textBox4.Text = this.textBox4.Text
-                                + tempStack
+                                + "\t\t"
+                                +tempStack
                                 + " -> "
                                 + data[1]
                                 + "\t\t|\t\t";

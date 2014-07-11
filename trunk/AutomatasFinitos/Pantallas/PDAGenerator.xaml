@@ -35,7 +35,8 @@
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="209,245,0,0" Name="comboBox5" VerticalAlignment="Top" Width="43" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="444,246,0,0" Name="comboBox6" VerticalAlignment="Top" Width="50" />
         <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,245,445,0" Name="comboBox7" VerticalAlignment="Top" Width="39" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="257,245,0,0" Name="comboBox8" VerticalAlignment="Top" Width="35" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="257,245,0,0" Name="comboBox8" VerticalAlignment="Top" Width="38
+                  " />
         <Label Content=")" Height="28" HorizontalAlignment="Left" Margin="291,242,0,0" Name="label19" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="159,0,0,447" Name="comboBox9" VerticalAlignment="Bottom" Width="120" SelectionChanged="comboBox9_SelectionChanged" />
     </Grid>
