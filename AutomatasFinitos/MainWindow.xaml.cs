@@ -115,7 +115,7 @@ namespace AutomatasFinitos
                 foreach (string entrada in cintaEntradas)
                 {
                     this.textBox4.Text = this.textBox4.Text
-                            + "-----------------------------------------------------------------------\n";
+                            + "\t\t-----------------------------------------------------------------------\n";
                     esperar1Seg();
                     if (mealy.validateTransition(entrada))
                     {
