@@ -17,6 +17,8 @@ using System.Threading;
 using AutomatasFinitos.Beans;
 using AutomatasFinitos.Utils;
 
+
+
 namespace AutomatasFinitos
 {
     /// <summary>
@@ -141,6 +143,7 @@ namespace AutomatasFinitos
                             +"\n";
                        
                         this.textBox2.Text = mealy.stack;
+                        System.Windows.Forms.Application.DoEvents();
                    }
                     else
                     {
@@ -193,7 +196,7 @@ namespace AutomatasFinitos
                             pda.putInStack(data[1]);
 
                             this.textBox2.Text = pda.stackToString();
-
+                            System.Windows.Forms.Application.DoEvents();
                         }
                         else 
                         {
