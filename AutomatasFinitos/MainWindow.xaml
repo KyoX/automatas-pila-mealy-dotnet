@@ -1,7 +1,7 @@
 ﻿<Window x:Class="AutomatasFinitos.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Automatas Finitos" Height="745" Width="680" Icon="/AutomatasFinitos;component/Resources/Icons/ic_launcher.png" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Normal" Closed="Window_Closed" Visibility="Visible">
+        Title="Automatas Finitos" Height="580" Width="680" Icon="/AutomatasFinitos;component/Resources/Icons/ic_launcher.png" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowState="Normal" Closed="Window_Closed" Visibility="Visible">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="129*" />
@@ -13,15 +13,11 @@
         <TextBox Grid.ColumnSpan="2" Height="23" HorizontalAlignment="Left" Margin="105,112,0,0" Name="textBox1" VerticalAlignment="Top" Width="483" AcceptsReturn="True" AcceptsTab="True" />
         <TextBox Grid.ColumnSpan="2" Height="23" HorizontalAlignment="Left" Margin="105,166,0,0" Name="textBox2" VerticalAlignment="Top" Width="483" AcceptsReturn="False" IsReadOnly="True" />
         <Button Content="Reiniciar todo" Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="313,49,0,0" Name="button3" VerticalAlignment="Top" Width="106" Click="button3_Click" />
-        <StatusBar Height="23" HorizontalAlignment="Left" Margin="0,683,0,0" Name="statusBar1" VerticalAlignment="Top" Width="667" Grid.ColumnSpan="2" />
-        <Label Content="Estado: listo" Height="28" HorizontalAlignment="Left" Margin="15,678,0,0" Name="label3" VerticalAlignment="Top" />
-        <Label Content="Tipo Automata : ---" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="15,678,0,0" Name="label4" VerticalAlignment="Top" />
+        <StatusBar Height="23" HorizontalAlignment="Left" Margin="0,512,0,0" Name="statusBar1" VerticalAlignment="Top" Width="667" Grid.ColumnSpan="2" />
+        <Label Content="Estado: listo" Height="28" HorizontalAlignment="Left" Margin="15,512,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="Tipo Automata : ---" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="0,507,0,0" Name="label4" VerticalAlignment="Top" />
         <Menu Grid.ColumnSpan="2" Height="23" HorizontalAlignment="Left" Name="menu1" VerticalAlignment="Top" Width="667">
             <MenuItem Header="Acciones" Click="MenuItem_Click">
-                <MenuItem Header="Ejecutar" />
-                <!-- en consideración todavía -->
-                <MenuItem Header="Mostrar en notación matemática" />
-                <MenuItem Header="Reiniciar todo" />
                 <MenuItem Header="Salir" />
             </MenuItem>
             <MenuItem Header="Generar" Click="MenuItem_Click_1">
@@ -29,37 +25,11 @@
                 <MenuItem Header="Máquina de Mealy" />
             </MenuItem>
             <MenuItem Header="Ayuda" Click="MenuItem_Click_2">
-                <MenuItem Header="Como usar este programa" />
                 <MenuItem Header="Acerca de" />
             </MenuItem>
         </Menu>
         <Label Content="Salida:" Height="28" HorizontalAlignment="Left" Margin="35,210,0,0" Name="label5" VerticalAlignment="Top" />
         <TextBox AcceptsReturn="False" Grid.ColumnSpan="2" Height="23" HorizontalAlignment="Left" IsReadOnly="True" Margin="105,212,0,0" Name="textBox3" VerticalAlignment="Top" Width="483" />
-        <Slider Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="36,49,0,0" Name="slider1" VerticalAlignment="Top" Width="100" Value="5" Maximum="20" />
-        <Label Content="Velocidad de ejecución" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="142,49,0,0" Name="label6" VerticalAlignment="Top" />
-        <Canvas x:Name="canva1"  HorizontalAlignment="Left" Height="398" Margin="32,272,0,0" VerticalAlignment="Top" Width="597" Grid.ColumnSpan="2" Visibility="Visible">
-            <Ellipse x:Name="eli1" Fill="Blue" Height="45" Canvas.Left="17" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
-            <Ellipse x:Name="eli2" Fill="Blue" Height="45" Canvas.Left="101" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
-            <Ellipse x:Name="eli3" Fill="Blue" Height="45" Canvas.Left="181" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
-            <Ellipse x:Name="eli4" Fill="Blue" Height="45" Canvas.Left="264" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
-            <Ellipse x:Name="eli5" Fill="Blue" Height="45" Canvas.Left="343" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
-            <Ellipse x:Name="eli6" Fill="Blue" Height="45" Canvas.Left="420" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
-            <Ellipse x:Name="eli7" Fill="Blue" Height="45" Canvas.Left="500" Stroke="Black" Canvas.Top="104" Width="49" Visibility="Hidden"/>
-            <Label Content="Estado Actual: " Canvas.Left="26" Canvas.Top="273"/>
-            <Label x:Name="eActual" Content="" Canvas.Left="124" Canvas.Top="273" Width="170"/>
-            <Label Content="Cadena Actual: " Canvas.Left="25" Canvas.Top="306"/>
-            <Label x:Name="cadActual" Content="" Canvas.Left="124" Canvas.Top="306" Width="170"/>
-            <Label Content="Cadena de Pila" Canvas.Left="25" Canvas.Top="338" Visibility="Hidden" />
-            <Label x:Name="CadPila" Content="" Canvas.Left="124" Canvas.Top="338" Width="170" />
-            <Label x:Name="le1" Content="" Canvas.Left="33" Canvas.Top="160" />
-            <Label x:Name="le2" Content="" Canvas.Left="114" Canvas.Top="160"/>
-            <Label x:Name="le3" Content="" Canvas.Left="198" Canvas.Top="160"/>
-            <Label x:Name="le4" Content="" Canvas.Left="280" Canvas.Top="160"/>
-            <Label x:Name="le5" Content="" Canvas.Left="355" Canvas.Top="160"/>
-            <Label x:Name="le6" Content="" Canvas.Left="437" Canvas.Top="160"/>
-            <Label x:Name="le7" Content="" Canvas.Left="522" Canvas.Top="160"/>
-            <Label x:Name="PDAq" Canvas.Left="354" Canvas.Top="273" Content="Es Aceptado?" Height="28"  Visibility="Hidden" />
-            <Label x:Name="PDAres" Canvas.Left="390" Canvas.Top="306" Height="28"  Visibility="Hidden" />
-        </Canvas>
+        <TextBox Height="249" HorizontalAlignment="Left" Margin="36,257,0,0" Name="textBox4" VerticalAlignment="Top" Width="552" Grid.ColumnSpan="2" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" />
     </Grid>
 </Window>

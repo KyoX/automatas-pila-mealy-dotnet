@@ -56,9 +56,8 @@ namespace AutomatasFinitos.Implement
          * Inicializa el pda con los datos necesarios para la ejecución
          * 
          * */
-        public void inicializar(double delay)
+        public void inicializar()
         {
-            this.delay = (int)delay * 100;
             stack = new List<string>();
             stack.Add(pda.simboloInicialPila);
             this.lastState = pda.estadoInicial;

@@ -9,7 +9,6 @@ namespace AutomatasFinitos.Implement
     class MealyImplement
     {
         private Mealy_Moore mm;
-        public int delay { get; set; }
         public string stack { get; set;}
         public string lastState { get; set; } // estado en que ha quedado el automata
 
@@ -56,11 +55,10 @@ namespace AutomatasFinitos.Implement
             return stack;
         }
 
-        public void inicializar(double delay)
+        public void inicializar()
         {
             stack = "&";
             lastState = mm.estadoInicial;
-            this.delay = (int)delay * 100;
         }
 
         public List<string> obtenerListaEstados()

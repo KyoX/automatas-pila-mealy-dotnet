@@ -1,8 +1,0 @@
-﻿<Window x:Class="AutomatasFinitos.Pantallas.HowTo"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Como usar este programa" Height="300" Width="300" Icon="/AutomatasFinitos;component/Resources/Icons/ic_launcher.png" Topmost="True" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
-    <Grid>
-        
-    </Grid>
-</Window>

@@ -36,7 +36,7 @@ namespace AutomatasFinitos.Pantallas
             List<string> temp = new List<string>();
             this.comboBox9.ItemsSource = temp;
 
-            for (int i = 2; i < 8; i++)
+            for (int i = 2; i <= 15; i++)
             {
                 temp.Add("" + i);
             }
@@ -156,6 +156,7 @@ namespace AutomatasFinitos.Pantallas
 
         private void button4_Click(object sender, RoutedEventArgs e)
         {
+            this.DialogResult = false;
             this.Close();
         }
 
@@ -239,7 +240,7 @@ namespace AutomatasFinitos.Pantallas
                 pda.estadosFinales = estadosFinales;
                 pda.funcTransicion = funcT;
                 pda.simboloInicialPila = (string)this.comboBox2.SelectedItem;
-
+                this.DialogResult = true;
                 this.Close();
             }
             else

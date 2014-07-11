@@ -15,6 +15,7 @@ using AutomatasFinitos.Implement;
 using AutomatasFinitos.Pantallas;
 using System.Threading;
 using AutomatasFinitos.Beans;
+using AutomatasFinitos.Utils;
 
 namespace AutomatasFinitos
 {
@@ -56,17 +57,31 @@ namespace AutomatasFinitos
 
             mealy = null;
             pda = null;
-
             if (nombre.Contains("Mealy")) 
-            { 
-                mG.ShowDialog();
-                mealy = new MealyImplement(mG.mm);
-                this.label4.Content = "Tipo Automata : Mealy";
+            {
+                if (mG.ShowDialog().GetValueOrDefault())
+                {
+                    mealy = new MealyImplement(mG.mm);
+                    this.label4.Content = "Tipo Automata : Mealy";
+                }
+                else {
+                    mealy = null;
+                    pda = null;
+                    this.label4.Content = "Tipo Automata : ---"; 
+                }
             }
             else {
-                pila.ShowDialog();
-                pda = new PDAImplement(pila.pda);
-                this.label4.Content = "Tipo Automata : PDA";
+                if (pila.ShowDialog().GetValueOrDefault())
+                {
+                    pda = new PDAImplement(pila.pda);
+                    this.label4.Content = "Tipo Automata : PDA";
+                }
+                else {
+                    mealy = null;
+                    pda = null;
+                    this.label4.Content = "Tipo Automata : ---"; 
+                }
+
             }
         }
 
@@ -76,7 +91,7 @@ namespace AutomatasFinitos
             MenuItem source = (MenuItem)e.Source;
             string nombre = (string)source.Header;
             if (nombre.Contains("Acerca")) { new About().ShowDialog(); }
-            else { new HowTo().ShowDialog(); }
+          
         }
 
         // ejecuta la maquina de Mealy o el automata de pila de acuerdo a la definición cargada
@@ -86,40 +101,46 @@ namespace AutomatasFinitos
             string[] cintaEntradas = this.textBox1.Text.Split(',');
             this.textBox2.Text = "";
             this.textBox3.Text = "";
-            String cadAct = "";
-            String pila = "";
-            System.Threading.ManualResetEvent temporizador = new System.Threading.ManualResetEvent(false);
+            this.textBox4.Text = "";
 
             string temp;
             if (mealy != null)  // se quiere que se ejecute un autómata de Mealy
             {
-                mealy.inicializar(this.slider1.Value);  // setea los valores necesarios para inicializar el automata de Mealy
-                prepararCanvaMoore(); // dibuja los estados 
+                this.label3.Content = "Estado: Realizando transiciones";
+                mealy.inicializar();  // setea los valores necesarios para inicializar el automata de Mealy
+
+                this.textBox4.Text = this.textBox4.Text
+                            + "Función de salida\t\t|\t\tFunción de transición\n";
 
                 foreach (string entrada in cintaEntradas)
-                { 
-                    Console.WriteLine("---");
-                    temporizador.WaitOne(500);
-                    Console.WriteLine("---");
+                {
+                    this.textBox4.Text = this.textBox4.Text
+                            + "-----------------------------------------------------------------------\n";
+                    //esperar1Seg();
                     if (mealy.validateTransition(entrada))
                     {
                         temp = mealy.generateOutputVal(entrada);
-                        Console.WriteLine("Salida: " + temp);
+                        
                         this.textBox3.Text = this.textBox3.Text + temp;
 
                         String eAnt = mealy.lastState;
+                        this.textBox4.Text = this.textBox4.Text
+                            + "λ("
+                            + eAnt + "," + entrada
+                            + ") := "
+                            + temp
+                            + "\t\t|\t\t";
                       
                         temp = mealy.generateTransition(entrada);
-                        Console.WriteLine("Transición: " + eAnt + "," + entrada
-                            + " -> " + temp);
 
-                        dibujarTransicionMoore(eAnt,mealy.lastState);
-                        
+                        this.textBox4.Text = this.textBox4.Text
+                            + "δ("
+                            + eAnt + "," + entrada
+                            + ") := "
+                            + temp
+                            +"\n";
+                       
                         this.textBox2.Text = mealy.stack;
-                        eActual.Content = mealy.lastState;
-                        cadActual.Content = cadAct + entrada;
-                        pila = pila + mealy.stack;
-                        CadPila.Content = pila + mealy.stack;
                    }
                     else
                     {
@@ -129,24 +150,23 @@ namespace AutomatasFinitos
                         break;
                     }
                 }
+                this.label3.Content = "Estado: listo";
             }
             else
             {
                 if (pda != null)
                 {
-                    
-                    pda.inicializar(this.slider1.Value);
-                    prepararCanvaPDA(); // dibuja los estados 
-
-                    this.PDAq.Visibility = Visibility.Visible;
-                    this.PDAres.Visibility = Visibility.Visible;
-                    
+                    this.label3.Content = "Estado: Realizando transiciones";
+                    pda.inicializar();
                     string[] data;
+
+                    this.textBox4.Text = this.textBox4.Text
+                            + "Stack\t\t|\t\tFunción de transición\n";
+
                     foreach (string entrada in cintaEntradas)
                     {
-                        Console.WriteLine("---");
-                        temporizador.WaitOne(500);
-                        Console.WriteLine("---");
+                        this.textBox4.Text = this.textBox4.Text
+                           + "-----------------------------------------------------------------------\n";
                         string tempStack = pda.popStack();
                         if (pda.validateTransition(entrada, tempStack))
                         {
@@ -156,17 +176,22 @@ namespace AutomatasFinitos
                             temp = pda.generateTransition(entrada, tempStack);
                             data = temp.Split(',');
 
-                            Console.WriteLine("Estados: " + eAnt + " -> " + data[0]);
-                            Console.WriteLine("Al stack: " + data[1]);
+                            this.textBox4.Text = this.textBox4.Text
+                                + tempStack
+                                + " -> "
+                                + data[1]
+                                + "\t\t|\t\t";
 
-                            
+                            this.textBox4.Text = this.textBox4.Text
+                                + "δ("
+                                + eAnt + "," + entrada
+                                + ") := "
+                                + data[0]
+                                + "\n";
+
                             pda.lastState = data[0];
                             pda.putInStack(data[1]);
 
-                            dibujarTransicionPDA(eAnt, pda.lastState);
-                        
-                            cadActual.Content = cadAct + pda.stackToString(); 
-                            Console.WriteLine(pda.stackToString());
                             this.textBox2.Text = pda.stackToString();
 
                         }
@@ -180,18 +205,25 @@ namespace AutomatasFinitos
                         }
                     }
 
-                    this.PDAq.Visibility = Visibility.Visible;
-                    this.PDAres.Visibility = Visibility.Visible;
 
                     bool aceptado = pda.esAceptado();
-                    Console.WriteLine("Es aceptado? : " + aceptado);
+                    
                     if (aceptado) {
-                        this.PDAres.Content = "Aceptado";
                         this.textBox3.Text = "Aceptado";
+                        this.textBox4.Text = this.textBox4.Text
+                            + "\nLa palabra: "
+                            + this.textBox1.Text.Replace(",", String.Empty)
+                            + " Es aceptada por el PDA";
+                        
                     }
                     else {
-                        this.PDAres.Content = "Rechazado";
-                        this.textBox3.Text = "Rechazado"; }
+                        this.textBox3.Text = "Rechazado";
+                        this.textBox4.Text = this.textBox4.Text
+                            + "\nLa palabra: "
+                            + this.textBox1.Text.Replace(",", String.Empty)
+                            + " Es rechazada por el PDA";
+                    }
+                    this.label3.Content = "Estado: listo";
                 }
                 else
                 {
@@ -203,6 +235,24 @@ namespace AutomatasFinitos
                            "Seleccione un tipo de autómata", MessageBoxButton.OK, MessageBoxImage.Stop);
                 }
             }
+        }
+
+        /*
+         * 
+         * Primitiva que obliga al programa a esperar 1 segundo antes de seguir ejecutandose
+         * 
+         * */
+        private void esperar1Seg()
+        {
+            long t0 = CurrentMillis.Millis;
+            long t1;
+            long t;
+            do
+            {
+                t1 = CurrentMillis.Millis;
+                t = t1 - t0;
+            } while (t < 1000);
+
         }
 
         // pone en blanco los campos y stack/salida, tambien la definición de los automatas
@@ -218,289 +268,10 @@ namespace AutomatasFinitos
             this.textBox1.Text = "";
             this.textBox2.Text = "";
             this.textBox3.Text = "";
-            this.cadActual.Content = "";
-            this.PDAres.Content = "";
+            this.textBox4.Text = "";
             this.label4.Content = "Tipo Automata : ---";
-            this.canva1.Visibility = Visibility.Hidden;
-            this.eli1.Visibility = Visibility.Hidden; this.le1.Content = "";
-            this.eli1.Fill = new SolidColorBrush(Colors.Blue);
-            this.eli2.Visibility = Visibility.Hidden; this.le1.Content = "";
-            this.eli2.Fill = new SolidColorBrush(Colors.Blue);
-            this.eli3.Visibility = Visibility.Hidden; this.le1.Content = "";
-            this.eli3.Fill = new SolidColorBrush(Colors.Blue);
-            this.eli4.Visibility = Visibility.Hidden; this.le1.Content = "";
-            this.eli4.Fill = new SolidColorBrush(Colors.Blue);
-            this.eli5.Visibility = Visibility.Hidden; this.le1.Content = "";
-            this.eli5.Fill = new SolidColorBrush(Colors.Blue);
-            this.eli6.Visibility = Visibility.Hidden; this.le1.Content = "";
-            this.eli6.Fill = new SolidColorBrush(Colors.Blue);
-            this.eli7.Visibility = Visibility.Hidden; this.le1.Content = "";
-            this.eli7.Fill = new SolidColorBrush(Colors.Blue);
-            eActual.Content = "";
-            cadActual.Content = "";
-            CadPila.Content = "";        
         }
 
-        private void prepararCanvaMoore(){
-            List<string> temp = new List<string>(); 
-            //Colorear el estado inicial
-           temp = mealy.obtenerListaEstados();
-           int ini = temp.IndexOf(mealy.lastState);
-
-          switch (ini)
-           {
-               case 0:
-                   this.eli1.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-               case 1:
-                   this.eli2.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-               case 2:
-                   this.eli3.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-               case 3:
-                   this.eli4.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-               case 4:
-                   this.eli5.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-               case 5:
-                   this.eli6.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-               case 6:
-                   this.eli7.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-           }
-           
-
-            int a = temp.Count;
-                                  
-         for (int i = 0 ; i < a; i++)  
-            {
-                switch (i) {
-                   case 0:
-                        this.eli1.Visibility = Visibility.Visible;
-                        this.le1.Content = temp[i];
-                        break;
-                    case 1:
-                        this.eli2.Visibility = Visibility.Visible;
-                        this.le2.Content = temp[i];
-                        break;
-                    case 2:
-                        this.eli3.Visibility = Visibility.Visible;
-                        this.le3.Content = temp[i];
-                        break;
-                    case 3:
-                        this.eli4.Visibility = Visibility.Visible;
-                        this.le4.Content = temp[i];
-                        break;
-                    case 4:
-                        this.eli5.Visibility = Visibility.Visible;
-                        this.le5.Content = temp[i];
-                        break;
-                    case 5:
-                        this.eli6.Visibility = Visibility.Visible;
-                        this.le6.Content = temp[i];
-                        break;
-                    case 6:
-                        this.eli7.Visibility = Visibility.Visible;
-                        this.le7.Content = temp[i];
-                        break;                                  
-                }
-            }
-        
-         this.canva1.Visibility = Visibility.Visible;
-        }
-
-        private void prepararCanvaPDA()
-        {
-            List<string> temp = new List<string>();
-            //Colorear el estado inicial
-            temp = pda.obtenerListaEstados();
-            int ini = temp.IndexOf(pda.lastState);
-
-            switch (ini)
-            {
-                case 0:
-                    this.eli1.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-                case 1:
-                    this.eli2.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-                case 2:
-                    this.eli3.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-                case 3:
-                    this.eli4.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-                case 4:
-                    this.eli5.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-                case 5:
-                    this.eli6.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-                case 6:
-                    this.eli7.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-            }
-            
-            int a = temp.Count;
-
-            for (int i = 0; i < a; i++)
-            {
-                switch (i)
-                {
-                    case 0:
-                        this.eli1.Visibility = Visibility.Visible;
-                        this.le1.Content = temp[i];
-                        break;
-                    case 1:
-                        this.eli2.Visibility = Visibility.Visible;
-                        this.le2.Content = temp[i];
-                        break;
-                    case 2:
-                        this.eli3.Visibility = Visibility.Visible;
-                        this.le3.Content = temp[i];
-                        break;
-                    case 3:
-                        this.eli4.Visibility = Visibility.Visible;
-                        this.le4.Content = temp[i];
-                        break;
-                    case 4:
-                        this.eli5.Visibility = Visibility.Visible;
-                        this.le5.Content = temp[i];
-                        break;
-                    case 5:
-                        this.eli6.Visibility = Visibility.Visible;
-                        this.le6.Content = temp[i];
-                        break;
-                    case 6:
-                        this.eli7.Visibility = Visibility.Visible;
-                        this.le7.Content = temp[i];
-                        break;
-                }
-            }
-
-            this.canva1.Visibility = Visibility.Visible;
-        }
-
-        private void dibujarTransicionMoore(String act, String sig)
-        {
-            List<string> temp = new List<string>();
-            temp = mealy.obtenerListaEstados();
-
-            int a = temp.IndexOf(act);
-            int b = temp.IndexOf(sig);
-
-           switch (a)
-            {
-                case 0:
-                    this.eli1.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-                case 1:
-                    this.eli2.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-                case 2:
-                    this.eli3.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-                case 3:
-                    this.eli4.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-                case 4:
-                    this.eli5.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-                case 5:
-                    this.eli6.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-                case 6:
-                    this.eli7.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-            }
-
-           switch (b)
-           {
-               case 0:
-                   this.eli1.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-               case 1:
-                   this.eli2.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-               case 2:
-                   this.eli3.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-               case 3:
-                   this.eli4.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-               case 4:
-                   this.eli5.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-               case 5:
-                   this.eli6.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-               case 6:
-                   this.eli7.Fill = new SolidColorBrush(Colors.Yellow);
-                   break;
-           }
-        }
-
-        private void dibujarTransicionPDA(String act, String sig)
-        {
-            List<string> temp = new List<string>();
-            temp = pda.obtenerListaEstados();
-
-            int a = temp.IndexOf(act);
-            int b = temp.IndexOf(sig);
-
-            switch (a)
-            {
-                case 0:
-                    this.eli1.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-                case 1:
-                    this.eli2.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-                case 2:
-                    this.eli3.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-                case 3:
-                    this.eli4.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-                case 4:
-                    this.eli5.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-                case 5:
-                    this.eli6.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-                case 6:
-                    this.eli7.Fill = new SolidColorBrush(Colors.Blue);
-                    break;
-            }
-
-            switch (b)
-            {
-                case 0:
-                    this.eli1.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-                case 1:
-                    this.eli2.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-                case 2:
-                    this.eli3.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-                case 3:
-                    this.eli4.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-                case 4:
-                    this.eli5.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-                case 5:
-                    this.eli6.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-                case 6:
-                    this.eli7.Fill = new SolidColorBrush(Colors.Yellow);
-                    break;
-            }
-        }
         /*
          * 
          * esta esto aquí porque la mierda de .net se negaba a cerrar la aplicación
