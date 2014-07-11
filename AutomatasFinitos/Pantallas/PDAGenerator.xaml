@@ -23,7 +23,7 @@
         <Button Content="+" Height="23" HorizontalAlignment="Left" Margin="565,242,0,0" Name="button5" VerticalAlignment="Top" Width="22" Click="button5_Click" />
         <Button Content="-" Height="23" HorizontalAlignment="Left" Margin="565,277,0,0" Name="button6" VerticalAlignment="Top" Width="22" Click="button6_Click" />
         <Label Content=") = (" Height="28" HorizontalAlignment="Left" Margin="177,242,0,0" Name="label13" VerticalAlignment="Top" />
-        <Label Content=") " Height="28" HorizontalAlignment="Left" Margin="479,242,0,0" Name="label18" VerticalAlignment="Top" />
+        <Label Content=") " Height="28" HorizontalAlignment="Left" Margin="494,242,0,0" Name="label18" VerticalAlignment="Top" Width="12" />
         <Button Content="Generar definición" Height="23" HorizontalAlignment="Left" Margin="12,464,0,0" Name="button3" VerticalAlignment="Top" Width="116" Click="button3_Click" />
         <Button Content="Cancelar" Height="23" HorizontalAlignment="Left" Margin="472,464,0,0" Name="button4" VerticalAlignment="Top" Width="75" Click="button4_Click" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="159,83,0,0" Name="textBox2" VerticalAlignment="Top" Width="216" LostFocus="textBox2_LostFocus" />
@@ -32,9 +32,9 @@
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="177,185,0,0" Name="comboBox2" VerticalAlignment="Top" Width="46" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="31,245,0,0" Name="comboBox3" VerticalAlignment="Top" Width="42" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="79,245,0,0" Name="comboBox4" VerticalAlignment="Top" Width="39" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="216,245,0,0" Name="comboBox5" VerticalAlignment="Top" Width="35" />
-        <ComboBox Height="23" HorizontalAlignment="Left" Margin="444,246,0,0" Name="comboBox6" VerticalAlignment="Top" Width="35" />
-        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,245,445,0" Name="comboBox7" VerticalAlignment="Top" Width="42" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="209,245,0,0" Name="comboBox5" VerticalAlignment="Top" Width="43" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="444,246,0,0" Name="comboBox6" VerticalAlignment="Top" Width="50" />
+        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,245,445,0" Name="comboBox7" VerticalAlignment="Top" Width="39" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="257,245,0,0" Name="comboBox8" VerticalAlignment="Top" Width="35" />
         <Label Content=")" Height="28" HorizontalAlignment="Left" Margin="291,242,0,0" Name="label19" VerticalAlignment="Top" />
         <ComboBox Height="23" HorizontalAlignment="Left" Margin="159,0,0,447" Name="comboBox9" VerticalAlignment="Bottom" Width="120" SelectionChanged="comboBox9_SelectionChanged" />
