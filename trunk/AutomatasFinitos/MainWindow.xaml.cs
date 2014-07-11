@@ -159,6 +159,7 @@ namespace AutomatasFinitos
             {
                 if (pda != null)
                 {
+                    bool terminaPDA = true;
                     this.label3.Content = "Estado: Realizando transiciones";
                     pda.inicializar();
                     string[] data;
@@ -206,6 +207,7 @@ namespace AutomatasFinitos
                             MessageBox.Show("El autómata no esta definido correctamente\n"
                            + "Falta la definición para δ(" + pda.lastState + "," + entrada + "," + tempStack + ")",
                            "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            terminaPDA = false;
                             break;
                         }
                     }
@@ -213,7 +215,7 @@ namespace AutomatasFinitos
 
                     bool aceptado = pda.esAceptado();
                     
-                    if (aceptado) {
+                    if (terminaPDA && aceptado) {
                         this.textBox3.Text = "Aceptado";
                         this.textBox4.Text = this.textBox4.Text
                             + "\n\t\tLa palabra: "
